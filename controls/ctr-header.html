@@ -1,0 +1,64 @@
+﻿<nav class="navbar navbar-default navbar-static-top m-b-0">
+    <div class="navbar-header">
+        <div class="top-left-part">
+            <a class="logo" href="dashboard.html">
+                <b>
+                    <img src="assets/img/logo.png" alt="home" class="dark-logo" />
+                    <img src="assets/img/logo.png" alt="home" class="light-logo" style="width: 150px !important; height: auto;" />
+            </a>
+            </b>
+        </div>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <i class="fa fa-user-circle"></i> <b class="hidden-xs" id="cname" style="color: white !important; font-size: 17px !important; "></b><span class="caret"></span> </a>
+                <ul class="dropdown-menu dropdown-user animated flipInY">
+
+                    <li>
+                        <div class="dw-user-box">
+                            <div class="u-text">
+                                <h4 id="companyName" style="font-size: 10px; font-weight: bold;"></h4>
+                                <input type="hidden" id="hdnIsGST" value="0" />
+                            </div>
+                            <div class="u-text">
+                                <span id="comAddress" style="font-size:10px;">
+
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#" onclick="logout();"><i class="fa fa-power-off"></i> Logout</a></li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </div>
+</nav>
+<script type="text/javascript">
+
+    function CompanyProfile() {
+        var id = $('#hd_Userid').val();
+        var url = "https://api.kwickwash.com/api/CompanyProfile/GetCompanyData?id=" + id + "&status=1";
+        $.ajax({
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                _details = data;
+                if (typeof (_details) !== 'undefined') {
+                    $.each(_details, function (i, object) {
+                        $('#companyName').html('Vendor - ' + object.companyName);
+                        $('#cname').html('Vendor - ' +object.companyName);
+                        $('#comAddress').html("Add:-" + object.communicationAddress);
+                        $('#hdnIsGST').val(object.flgIsGST);
+                    });
+                }
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+
+</script>

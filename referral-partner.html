@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>Manage Referral - KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classReferral {
+            background-color: darkmagenta;
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">All Referral</h4>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a href="add-referral-partner.html" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="ti-user"> </i> Add Referral
+                        </a>
+                    </div>
+                </div>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h4 style="color: green;"></h4>
+                            <h3 class="box-title m-b-0">All Referral</h3>
+                            <div class="table-responsive">
+                                <table id="myTable2" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>S. No.</th>
+                                            <th>Company Name</th>
+                                            <th>Owner Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Status</th>
+                                            <th>Manage</th>
+                                        </tr>
+                                    </thead>                                   
+                                    <tbody id="ReferralList">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style> <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                var mode = 'iframe'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $("div.printableArea").printArea(options);
+            });
+
+            BindReferral();
+        });
+
+        //Bind service list code
+        function BindReferral() {
+            //alert(id);
+            $('#ReferralList').html('<span><i class="fa fa-spinner fa-spin" style="color:darkslateblue; font-size:30px; text-align:center;"></i></span>');
+            var url = "https://api.kwickwash.com/api/referral";
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = "";
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            _htmlTable += '<tr>';
+                            var ctr = 1 + i;
+                            _htmlTable += '<td>' + ctr + '</td>';
+                            _htmlTable += '<td>' + object.companyName + '</td>';
+                            _htmlTable += '<td>' + object.authorizedPersonName + '</td>';
+                            _htmlTable += ' <td>' + object.email + '</td>';
+                            _htmlTable += ' <td>' + object.mobile + '</td>';
+                            _htmlTable += '<td>';
+                            var cssClassA = "", cssClassA1 = "", cssClassH = "", cssClassH1 = "";
+                            if (object.isValid == '1' || object.isValid == 'True') {
+                                _htmlTable += '<label class="badge badge-danger">Deactive</label>&nbsp;';
+                                cssClassA = "disabled";
+                                cssClassA1 = "";
+                            }
+                            else {
+                                _htmlTable += '<label class="badge badge-teal">Active</label>&nbsp;';
+                                cssClassA = "";
+                                cssClassA1 = "disabled";
+                            }
+                            _htmlTable += '</td>';
+                            _htmlTable += '<td class="text-center">';
+                            _htmlTable += '<div class="dropdown">';
+                            _htmlTable += '<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>';
+                            _htmlTable += '<ul class="dropdown-menu">';
+                            //_htmlTable += '<li><a title="Activate" class="'+cssClassA+'" href="#" onclick="SetValid(' + object.userId + ');">Activate</a></li>';
+                            //_htmlTable += '<li><a title="Deactivate" class="'+cssClassA1+'"  href="#" onclick="SetValid(' + object.userId + ');">Deactivate</a></li>';
+                            //_htmlTable += '<li class="divider"></li>';
+                            //_htmlTable += '<li><a title="Hold" href="#" class="'+cssClassH+'" onclick="SetHold(' + object.userId + ');">Hold</a></li>';
+                            //_htmlTable += '<li><a title="Unhold" href="#" class="' + cssClassH1 + '" onclick="SetHold(' + object.userId + ');">Unhold</a></li>';
+                            _htmlTable += '<li><a title="View" href="#vendorView" data-toggle="modal" onclick="viewVendor(' + object.companyProfileId + ');">View</a></li>';
+                            _htmlTable += '<li class="divider"></li>';
+                            _htmlTable += '<li><a title="Edit" href="add-referral-partner.html?vid=' + object.companyProfileId + '">Edit</a>';
+                            _htmlTable += '</li></ul></div></td></tr>';
+                        });
+                    }
+                    $('#ReferralList').html(_htmlTable);
+                    $('#myTable2').DataTable();
+                    $(document).ready(function () {
+                        var table = $('#example').DataTable({
+                            "columnDefs": [{
+                                "visible": false,
+                                "targets": 2
+                            }],
+                            "order": [
+                                [2, 'asc']
+                            ],
+                            "displayLength": 25,
+                            "drawCallback": function (settings) {
+                                var api = this.api();
+                                var rows = api.rows({
+                                    page: 'current'
+                                }).nodes();
+                                var last = null;
+                                api.column(2, {
+                                    page: 'current'
+                                }).data().each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                        last = group;
+                                    }
+                                });
+                            }
+                        });
+                        // Order by the grouping
+                        $('#example tbody').on('click', 'tr.group', function () {
+                            var currentOrder = table.order()[0];
+                            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                                table.order([2, 'desc']).draw();
+                            } else {
+                                table.order([2, 'asc']).draw();
+                            }
+                        });
+                    });
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+
+        function viewVendor(id) {
+            var url = "https://api.kwickwash.com/api/companyprofile/" + id;
+            var _htmlTable = "";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (listReq) {
+                    _details = listReq;
+                    console.log(_details);
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#reqdt').html(object.authorizedPersonName);
+
+                            //Profile Type & Company Details
+
+                            _htmlTable += '<table class="display nowrap table table-hover table-striped table-bordered dataTable" id="dataTable5" width="100%" cellspacing="0">';
+                            _htmlTable += '<thead>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<th>Profile Type</th>';
+                            if (object.profileType != 'Individual') {
+                                _htmlTable += '<th>Company Type</th>';
+                                _htmlTable += '<th>Company Name</th>';
+                                _htmlTable += '<th>Company Email</th>';
+                                _htmlTable += '<th>Company Mobile</th><th>Company Reg. No.</th><th>Company GST No.</th><th>Company PAN</th></tr></thead>';
+                            }
+                            else {
+                                _htmlTable += '<th>GST No.</th>';
+                            }
+                            _htmlTable += '<tbody>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.profileType + '</td>';
+                            if (object.profileType != 'Individual') {
+                                _htmlTable += '<td>' + object.companyType + '</td>';
+                                _htmlTable += '<td>' + object.companyName + '</td>';
+                                _htmlTable += '<td>' + object.companyEmail + '</td>';
+                                _htmlTable += '<td>' + object.companyMobile + '</td>';
+                                _htmlTable += '<td>' + object.companyRegistrationNo + '</td>';
+                                _htmlTable += '<td>' + object.companyGSTno + '</td>';
+                                _htmlTable += '<td>' + object.companyPAN + '</td>';
+                            }
+                            else {
+                                _htmlTable += '<td>' + object.gsTno + '</td>';
+                            }
+                            _htmlTable += '</tr>';
+                            _htmlTable += '<thead>';
+                            _htmlTable += '<table>';
+
+                            //Personal Details
+
+                            _htmlTable += '<br/><table class="display nowrap table table-hover table-striped table-bordered dataTable" id="dataTable5" width="100%" cellspacing="0">';
+                            _htmlTable += '<thead><tr><th>Person Name</th><th>Email</th><th>Mobile</th><th>AadharNo</th><th>PAN No</th></tr></thead>';
+                            _htmlTable += '<tbody>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.authorizedPersonName + '</td>';
+                            _htmlTable += '<td>' + object.email + '</td>';
+                            _htmlTable += '<td>' + object.mobile + '</td>';
+                            _htmlTable += '<td>' + object.aadharNo + '</td>';
+                            _htmlTable += '<td>' + object.paNno + '</td>';
+                            _htmlTable += '</tr>';
+                            _htmlTable += '</tbody>';
+                            _htmlTable += '</table>';
+
+                            //Communication Address Details
+
+                            _htmlTable += '<br/><table class="display nowrap table table-hover table-striped table-bordered dataTable" id="dataTable5" width="100%" cellspacing="0">';
+                            _htmlTable += '<thead><tr><th>Communication Address</th><th>Communication State</th><th>Communication City</th><th>Communication Pincode</th></tr></thead>';
+                            _htmlTable += '<tbody>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.communicationAddress + '</td>';
+                            _htmlTable += '<td>' + object.communicationState + '</td>';
+                            _htmlTable += '<td>' + object.communicationCity + '</td>';
+                            _htmlTable += '<td>' + object.communicationPincode + '</td>';
+                            _htmlTable += '</tr>';
+                            _htmlTable += '</tbody>';
+                            _htmlTable += '</table>';
+
+                            //Permanent/Reg Address Details
+
+                            _htmlTable += '<br/><table class="display nowrap table table-hover table-striped table-bordered dataTable" id="dataTable5" width="100%" cellspacing="0">';
+                            _htmlTable += '<thead><tr><th>Permanent/Reg Address</th><th>Permanent/Reg State</th><th>Permanent/Reg City</th><th>Permanent/Reg Pincode</th></tr></thead>';
+                            _htmlTable += '<tbody>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.regAddess + '</td>';
+                            _htmlTable += '<td>' + object.regState + '</td>';
+                            _htmlTable += '<td>' + object.regCity + '</td>';
+                            _htmlTable += '<td>' + object.regPincode + '</td>';
+                            _htmlTable += '</tr>';
+                            _htmlTable += '</tbody>';
+                            _htmlTable += '</table>';
+
+                            //Bank Account Information Details
+
+                            _htmlTable += '<br/><table class="display nowrap table table-hover table-striped table-bordered dataTable" id="dataTable5" width="100%" cellspacing="0">';
+                            _htmlTable += '<thead><tr><th>Bank Name</th><th>Bank Account</th><th>Bank IFSC</th><th>Bank Branch</th></tr></thead>';
+                            _htmlTable += '<tbody>';
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.bankName + '</td>';
+                            _htmlTable += '<td>' + object.bankAccount + '</td>';
+                            _htmlTable += '<td>' + object.bankIFSC + '</td>';
+                            _htmlTable += '<td>' + object.bankBranch + '</td>';
+                            _htmlTable += '</tr>';
+                            _htmlTable += '</tbody>';
+                            _htmlTable += '</table>';
+
+                        });
+                        $('#VendorCompanyList').html(_htmlTable);
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function SetValid(id) {
+            var tbName = "tbl.CompanyProfile";
+            var cName = "userid";
+            var cName1 = "isValid";
+            var data = "{id:'" + id + "',tbName:'" + tbName + "',cName:'" + cName + "',cName1:'" + cName1 + "'}";
+
+            var url = "apiService.asmx/isValid";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data, XMLHttpRequest) {
+                    BindVendor();
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+
+        function SetHold(id) {
+            var data = "{id:'" + id + "'}";
+            var url = "apiService.asmx/isHold";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data, XMLHttpRequest) {
+                    BindVendor();
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" src="assets/js/ajaxupload.js"></script>
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable2').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+    <div id="vendorView" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" id="reqdt"><i class="fas fa-fw fa-city"></i></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader"></div>
+                <form id="FrDivision">
+                    <div id="alertdivision" class="alert alert-success" style="display:none;">
+                        <strong>Success!</strong>save successfully !!.
+                    </div>
+                    <input type="hidden" id="hd_srno" />
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12 float-lg-right">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-body">
+                                            <div class="table-responsive" id="VendorCompanyList">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "vendor.kwickwash.in", ".", "{8FE701D9-949F-4330-A9DC-36C307DB2C0E}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64131"
+		Debug.AspNetCompiler.PhysicalPath = "..\vendor.kwickwash.in\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64131\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64131"
+		Release.AspNetCompiler.PhysicalPath = "..\vendor.kwickwash.in\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64131\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64131"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FE701D9-949F-4330-A9DC-36C307DB2C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE701D9-949F-4330-A9DC-36C307DB2C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16A2B8F6-2045-4ACD-9B7C-1DDA383EF23E}
+	EndGlobalSection
+EndGlobal

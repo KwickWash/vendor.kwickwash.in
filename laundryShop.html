@@ -1,0 +1,819 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss"></template>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">All Laundry shop</h4>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <!--  <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/Admin/add_user" class="fcbtn btn btn-success btn-outline btn-1b pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add Users</a> -->
+                        <a href="laundry/laundryShopAdd" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="ti-user"> </i> Add Laundry shop
+                        </a>
+                    </div>
+                </div>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h4 style="color: green;"></h4>
+                            <h3 class="box-title m-b-0">All Laundry shop</h3>
+                            <div class="table-responsive">
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>S. No.</th>
+                                            <th>Image</th>
+                                            <th>Owner Name</th>
+                                            <th>Shop Name</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Opening time</th>
+                                            <th>Closing time</th>
+                                            <th>Status</th>
+                                            <th>Manage</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Image</th>
+                                            <th>Owner Name</th>
+                                            <th>Shop Name</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Opening time</th>
+                                            <th>Closing time</th>
+                                            <th>Status</th>
+                                            <th>Manage</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1586250615.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1586250615.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Shyam sarma</td>
+                                            <td>Shyam laundry</td>
+                                            <td>() 89658745</td>
+                                            <td>jagjivan rod indore 452009</td>
+                                            <td>09:00</td>
+                                            <td>21:00</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/zAd1d3">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/zAd1d3">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/zAd1d3">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870108.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870108.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Rahat</td>
+                                            <td>Rahat laundry shop</td>
+                                            <td>(91) 89658745</td>
+                                            <td>
+                                                35 nil kanth colony near mata mandate Bhopal Madhya
+                                                pradesh 42344
+                                            </td>
+                                            <td>09:30</td>
+                                            <td>22:30</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/YZf0f6">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/YZf0f6">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/YZf0f6">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870487.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870487.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Rahat</td>
+                                            <td>Rahat laundry shop 2</td>
+                                            <td>(91) 88888888</td>
+                                            <td>indore</td>
+                                            <td>10:00</td>
+                                            <td>20:00</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/bc05b8">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/bc05b8">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/bc05b8">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591869852.jpeg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591869852.jpeg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>ram shop</td>
+                                            <td>(91) 2147483647</td>
+                                            <td>146,indra nagar, new yard itarsi</td>
+                                            <td>12:07</td>
+                                            <td>22:59</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/st27d5">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/st27d5">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/st27d5">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1590501524.jpeg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1590501524.jpeg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Rahat</td>
+                                            <td>Rahat Itarsi Branch</td>
+                                            <td>(91) 2147483647</td>
+                                            <td>near Railway station</td>
+                                            <td>09:30</td>
+                                            <td>07:00</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/xy67e2">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/xy67e2">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/xy67e2">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870350.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591870350.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Shyam sarma</td>
+                                            <td>testing shop 2</td>
+                                            <td>(91) 2147483647</td>
+                                            <td>Vijaynagar Nagar Indore</td>
+                                            <td>12:00</td>
+                                            <td>23:00</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/pq37be">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/pq37be">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/pq37be">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>7</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591869874.jpeg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1591869874.jpeg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>bahrestan</td>
+                                            <td>(98) 2147483647</td>
+                                            <td>bahrestan</td>
+                                            <td>01:00</td>
+                                            <td>23:59</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/yz95c1">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/yz95c1">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/yz95c1">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>8</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593091053.gif" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593091053.gif" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>Jetha Cleaning Service</td>
+                                            <td>(91) 2147483647</td>
+                                            <td>Vijay Nagar Indore</td>
+                                            <td>20:46</td>
+                                            <td>19:46</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/op7b20">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/op7b20">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/op7b20">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>9</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593091589.gif" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593091589.gif" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Aditya Mehna</td>
+                                            <td>Jetha Cleaning Service</td>
+                                            <td>(91) 2147483647</td>
+                                            <td>Anand Bazar Indore</td>
+                                            <td>21:59</td>
+                                            <td>20:53</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG712d">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG712d">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/FG712d">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>10</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593304806.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593304806.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>ATRAK LAUNDRY </td>
+                                            <td>(212) 621877106</td>
+                                            <td>3 Boulevard Oued Beht, Casablanca 20220</td>
+                                            <td>06:38</td>
+                                            <td>12:38</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG2568">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG2568">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/FG2568">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>11</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593889490.png" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1593889490.png" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>qery</td>
+                                            <td>(84) 1202698888</td>
+                                            <td>dfsd</td>
+                                            <td>00:12</td>
+                                            <td>23:12</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG1719">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/FG1719">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/FG1719">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>12</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1594198518.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1594198518.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Akshay Cleaning services</td>
+                                            <td>Akshay Delhi</td>
+                                            <td>(91) 9999999</td>
+                                            <td>Delhi</td>
+                                            <td>09:00</td>
+                                            <td>22:00</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/ij7ae3">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/ij7ae3">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/ij7ae3">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>13</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1594445803.png" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/Laundry/1594445803.png" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Mohammed Al-Faifi</td>
+                                            <td>Olaya</td>
+                                            <td>(966) 500058108</td>
+                                            <td>Tuu Olaya</td>
+                                            <td>8 AM</td>
+                                            <td>12 AM</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/vw1468">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryShopStatus/vw1468">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryShop/vw1468">Update</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style>
+            <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                var mode = 'iframe'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $("div.printableArea").printArea(options);
+            });
+        });
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable2').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,1005 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classCustomer {
+            background-color: #6ab215;
+        }
+
+        .loader {
+            background: orangered;
+            text-align: center;
+            width: 1093px;
+            padding: 25%;
+            border: 1px solid orangered;
+            opacity: 0.5;
+            position: absolute;
+            z-index: 999;
+            margin-left: 2px;
+            border-radius: 4px;
+            margin-top: -40px;
+        }
+    </style>
+    <!--<link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" />-->
+    <link href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Customer</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <!--<a href="#customerBox" onclick="inputClear();" class="btn btn-primary" data-toggle="modal" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="fa fa-user"> </i> Add Customer
+                        </a>-->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+
+                        <!-- </div> -->
+                        <!-- /.row -->
+                        <!-- ============================================================== -->
+                        <!-- /row -->
+                        <!-- <div class="row"> -->
+                        <div class="col-sm-12">
+                            <div class="white-box">
+                                <h3 class="box-title m-b-0">All Customer list</h3>
+                                <a href="#" class="btn btn-default" onclick="ExportExcel();">Export In Excel</a>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="dataTables_length" id="myTable2_length">
+                                            <label>
+                                                Show
+                                                <select name="myTable2_length" aria-controls="myTable2" class="form-control form-control-sm">
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                                entries
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div id="myTable2_filter" class="dataTables_filter" style="float: right;">
+                                            <label>
+                                                Mobile:
+                                            </label>
+                                            <input id="txtFilter" onkeyup="BindOrder(1);" type="search" class="form-control form-control-sm mdi-format-float-left" placeholder="" aria-controls="myTable2" />
+                                            <!--<input type="button" class="btn btn-success" onclick="BindOrder(1);" value="Find" />-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive" style="overflow: auto;" id="divCustomerList">
+
+                                </div>
+                                <div class="dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination" id="divPaging">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+
+                .smsActive {
+                    text-transform: uppercase;
+                    margin-top: 1px;
+                    background-color: #32720b !important;
+                    display: inline-block;
+                    min-width: 10px;
+                    padding: 3px 7px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    line-height: 1;
+                    color: #fff;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    border-radius: 10px;
+                }
+
+                .smsDeactive {
+                    text-transform: uppercase;
+                    margin-top: 1px;
+                    background-color: darkred !important;
+                    display: inline-block;
+                    min-width: 10px;
+                    padding: 3px 7px;
+                    font-size: 12px;
+                    font-weight: 700;
+                    line-height: 1;
+                    color: #fff;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    border-radius: 10px;
+                }
+            </style> <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                var mode = 'iframe'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $("div.printableArea").printArea(options);
+            });
+
+            // Bind Service List
+
+
+            /// Upload Image ///
+            var button = $('#btn_Image'), interval;
+            new AjaxUpload(button, {
+                action: 'services/serviceImg.ashx',
+                name: 'myImage',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_Image').val() !== "") { $.fn.DeleteFile($('#hd_Image').val()); } } catch (e) { }
+                    $('#hd_Image').val("upload/serviceImg/" + response);
+                    $("#imgPath").attr('src', "upload/serviceImg/" + response);
+                }
+            });
+        });
+        function bgLoad() {
+            BindOrder(1);
+            CompanyProfile();
+        }
+        function BindCustomer() {
+            //alert(id);
+            $('#divCustomerList').html('<span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span>');
+            var shopUserId = $('#hd_Userid').val();
+            var url = "https://api.kwickwash.com/api/Profile/GetCustomer?mobile=0&shopUserid=" + shopUserId;
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = '<table id="myTable2" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">';
+                    _htmlTable += '<thead><tr><th style="display:none;">S.No.</th><th>Name</th><th>Email</th><th>Mobile</th><th>DND</th><td>Balance</td><th>Status</th><th>Manage</th></tr>';
+                    _htmlTable += '</thead><tbody id="listCustomer"';
+
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            _htmlTable += '<tr>';
+                            var ctr = 1 + i;
+                            _htmlTable += '<td style="display:none;">' + ctr + '</td>';
+
+                            _htmlTable += '<td>' + object.name + '</td>';
+                            _htmlTable += ' <td>' + object.emailId + '</td>';
+                            _htmlTable += ' <td>' + object.mobile + '</td>';
+                            if (object.flgIsSMS == '1' || object.flgIsSMS == 'True') {
+                                _htmlTable += '<td><label id="lbl_' + object.profileId + '" class="smsActive badge-teal" onclick="SMSStatus(' + object.profileId + ');">SMS Active</label></td>';
+                            }
+                            else {
+                                _htmlTable += '<td><label id="lbl_' + object.profileId + '" class="smsDeactive badge-teal" onclick="SMSStatus(' + object.profileId + ');">SMS Deactive</label></td>';
+                            }
+                            if (parseFloat(object.balance) > 1) {
+                                _htmlTable += ' <td style="color:green; font-weight: 500;">' + Math.round(object.balance).toFixed(2) + '</td>';
+                            }
+                            else {
+                                _htmlTable += ' <td style="color:red; font-weight: 500;">' + Math.round(object.balance).toFixed(2) + '</td>';
+                            }
+                            if (object.status == '1' || object.status == 'True') {
+                                _htmlTable += '<td><label class="badge badge-teal">Active</label></td>';
+                            }
+                            else {
+                                _htmlTable += '<td><label class="badge badge-danger">Deactive</label></td>';
+                            }
+                            _htmlTable += '<td class="text-center">';
+                            _htmlTable += '<div class="dropdown">';
+                            _htmlTable += '<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>';
+                            _htmlTable += '<ul class="dropdown-menu">';
+                            _htmlTable += '<li><a title="Verified" onclick="SetValid(' + object.profileId + ');">Activate</a></li>';
+                            _htmlTable += '<li><a title="Not Verified" onclick="SetValid(' + object.profileId + ');">Deactivate</a></li>';
+                            _htmlTable += '<li class="divider"></li>';
+                            _htmlTable += '<li><a title="Edit" onclick="ReadData(' + object.userId + ');">Edit</a>';
+                            _htmlTable += '</li></ul></div></td></tr>';
+                        });
+                    }
+                    _htmlTable += '</tbody></table>'
+                    $('#divCustomerList').html(_htmlTable);
+                    $('#myTable2').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    });
+                    //$('#myTable2').DataTable();
+                    $(document).ready(function () {
+                        var table = $('#example').DataTable({
+                            "columnDefs": [{
+                                "visible": false,
+                                "targets": 2
+                            }],
+                            "order": [
+                                [2, 'asc']
+                            ],
+                            "displayLength": 25,
+                            "drawCallback": function (settings) {
+                                var api = this.api();
+                                var rows = api.rows({
+                                    page: 'current'
+                                }).nodes();
+                                var last = null;
+                                api.column(2, {
+                                    page: 'current'
+                                }).data().each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                        last = group;
+                                    }
+                                });
+                            }
+                        });
+                        // Order by the grouping
+                        $('#example tbody').on('click', 'tr.group', function () {
+                            var currentOrder = table.order()[0];
+                            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                                table.order([2, 'desc']).draw();
+                            } else {
+                                table.order([2, 'asc']).draw();
+                            }
+                        });
+                    });
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function BindOrder(pageno) {
+            //alert(id);
+            $('#divCustomerList').html('<span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span>');
+            var shopUserid = $('#hd_Userid').val();
+            var url = "apiService.asmx/GetCustomer";
+            var data = "{shopUserid:'" + shopUserid + "',pageno:'" + pageno + "',mobile:'" + $('#txtFilter').val() + "'}";
+            var pageList = '';
+            var slno = 0;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    _details = data.d;
+                    var _htmlTable = '<table id="myTable2" class="display nowrap table table-bordered" cellspacing="0" width="100%">';
+                    _htmlTable += '<thead><tr><th style="display:none;">S.No.</th><th>Shop Name</th><th>Name</th><th>Mobile</th><th>Total Order</th><th>Total Order Amt</th><th>Total Paid</th><th>Balance</th><th>Manage</th></tr>';
+                    _htmlTable += '</thead><tbody id="listCustomer"';
+
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            _htmlTable += '<tr>';
+                            if (i == 0) {
+                                slno = Number(10) * Number(pageno);
+                                slno = slno - (10);
+                            }
+                            slno++;
+                            _htmlTable += '<tr>';
+                            //_htmlTable += '<td>' + slno + '</td>';
+                            _htmlTable += '<td>' + object.shopname + '</td>';
+                            _htmlTable += '<td>' + object.name + '</td>';
+                            //_htmlTable += ' <td>' + object.emailId + '</td>';
+                            _htmlTable += ' <td>' + object.mobile + '</td>';
+                            _htmlTable += ' <td>' + object.ttlorder + '</td>';
+                            _htmlTable += ' <td>' + object.ttlorderamt + '</td>';
+                            _htmlTable += ' <td>' + object.ttlpaidamt + '</td>';
+                            if (parseFloat(object.balance) > 0) {
+                                _htmlTable += ' <td style="color:green; font-weight: 500;">' + Math.round(object.balance).toFixed(2) + '</td>';
+                            }
+                            else {
+                                _htmlTable += ' <td style="color:red; font-weight: 500;">' + Math.round(object.balance).toFixed(2) + '</td>';
+                            }
+
+                            _htmlTable += '<td>';
+                            if (object.flgIsSMS == '1' || object.flgIsSMS == 'True') {
+                                _htmlTable += '<label id="lbl_' + object.profileId + '" class="smsActive badge-teal" onclick="SMSStatus(' + object.profileId + ');">SMS Active</label>';
+                            }
+                            else {
+                                _htmlTable += '<label id="lbl_' + object.profileId + '" class="smsDeactive badge-teal" onclick="SMSStatus(' + object.profileId + ');">SMS Deactive</label>';
+                            }
+                            if (object.Status == '1' || object.Status == 'True') {
+                                _htmlTable += '&nbsp;&nbsp;&nbsp;&nbsp;<label id="lbls_' + object.profileId + '" class="badge badge-teal"><a id="aTag_' + object.profileId + '" title="Verified" onclick="SetValid(' + object.profileId + ');">Active</a></li ></label>';
+                            }
+                            else {
+                                _htmlTable += '&nbsp;&nbsp;&nbsp;&nbsp;<label id="lbls_' + object.profileId + '" class="badge badge-danger"><a id="aTag_' + object.profileId + '" title="Not Verified" onclick="SetValid(' + object.profileId + ');">Deactive</a></label>';
+                            }
+
+                            _htmlTable += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="Edit" onclick="ReadData(' + object.userId + ');"><i class="fa fa-edit" style="color: black;  font-size: 20px;"></i></a>';
+                            _htmlTable += '&nbsp;&nbsp;&nbsp;&nbsp;<a title="Summary" target="_blank" href="customer-summary.html?cid=' + object.userId + '"><i class="fa fa-print" style="color: black;  font-size: 20px;"></i></a>';
+
+                            _htmlTable += '</td></tr>';
+                            pageList = object.paging;
+                        });
+                    }
+                    _htmlTable += '</tbody></table>'
+                    $('#divCustomerList').html(_htmlTable);
+                    $('#divPaging').html(pageList);
+                    //$('#myTable2').DataTable({
+                    //    dom: 'Bfrtip',
+                    //    buttons: [
+                    //        'copy', 'csv', 'excel', 'pdf', 'print'
+                    //    ]
+                    //});
+
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function inputClear() {
+            $('#hd_Customer_id').val('0')
+            $('#txtname').val('');
+            $('#txtemailId').val('');
+            $('#txtmobile').val();
+            $('#hd_Image').val('');
+            $("#imgPath").attr('src', '');
+        }
+        //Add News Service
+        function AddCustomer() {
+            var profileId = $('#hd_Customer_id').val();
+            var name = $('#txtname').val();
+            var emailId = $('#txtemailId').val();
+            var mobile = $('#txtmobile').val();
+            var address = $('#txtaddress').val();
+            var state = $('#txtstate').val();
+            var city = $('#txtcity').val();
+            var pincode = $('#txtpincode').val();
+            var companyLogo = $('#hd_Image').val();
+            var shopUserId = $('#hd_Userid').val();
+            var gender = $('#ddGender').val();
+            var dob = $('#txtDob').val();
+            var doa = $('#txtDoa').val();
+            var occupation = $('#ddoccupation').val();
+            var maritalstatus = $('#ddmaritalstatus').val();
+            $(".error").remove();
+            if (name.length == "") {
+                $('#txtname').after('<span class="error">This field is required</span>');
+                $('#txtname').addClass('txterror');
+            }
+            else {
+                $('.loader').show();
+                var data = "{profileId:'" + profileId + "',name:'" + name + "',emailId:'" + emailId + "',mobile:'" + mobile + "',address:'" + address
+                    + "',state:'" + state + "',city:'" + city + "',pincode:'" + pincode + "',companyLogo:'" + companyLogo
+                    + "',shopUserId:'" + shopUserId + "',gender:'" + gender + "',dob:'" + dob + "',doa:'" + doa
+                    + "',occupation:'" + occupation + "',maritalstatus:'" + maritalstatus + "'}";
+
+                var url = "https://api.kwickwash.com/api/profile";
+
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        if (data == "1") {
+                            BindCustomer();
+                            document.getElementById("FrCustomer").reset();
+                            $('#alertt').fadeIn(2000);
+                            $('#alertt').fadeOut(3000);
+                            $('.loader').hide();
+                            $.alert({
+                                title: 'Success!',
+                                content: 'Save successfully',
+                            });
+                            $('#customerBox').each(function () {
+                                $(this).modal('hide');
+                            });
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        }
+
+        function ReadData(id) {
+            $('.loader').show();
+            $('#customerBox').each(function () {
+                $(this).modal('show');
+            });
+            var url = "https://api.kwickwash.com/api/profile/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#hd_Customer_id').val(object.profileId);
+                            $('#txtname').val(object.name);
+                            $('#txtemailId').val(object.emailId);
+                            $('#txtmobile').val(object.mobile);
+                            $('#txtaddress').val(object.address);
+                            $('#txtstate').val(object.state);
+                            $('#txtcity').val(object.city);
+                            $('#txtpincode').val(object.pincode);
+                            $('#hd_Image').val(object.companyLogo);
+                            $("#imgPath").attr('src', object.companyLogo);
+                            $('#ddGender').val(object.gender);
+                            $('#txtDob').val(object.dob);
+                            $('#txtDoa').val(object.doa);
+                            $('#ddoccupation').val(object.occupation);
+                            $('#ddmaritalstatus').val(object.maritalstatus);
+                            $('.loader').hide();
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function callArea() {
+            var pincode = $('#txtpincode').val();
+            var url = "https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/" + pincode;
+            var option = '<option value="0">Select Location</option>';
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                dataType: "json",
+                type: "GET",
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            var area = object.PostOffice;
+                            for (i = 0; i < area.length; i++) {
+                                if (i == 1) {
+                                    $('#txtcity').val(area[i].District);
+                                    $('#txtstate').val(area[i].State);
+                                }
+                                option += '<option value="' + area[i].Name + '">' + area[i].Name + '</option>';
+                            }
+                            $('#ddLocation').html(option);
+                        });
+                    }
+                }
+            });
+        }
+
+        function SetValid(id) {
+            var tbName = "tbl.Profile";
+            var cName = "profileId";
+            var cName1 = "status";
+            var data = "{id:'" + id + "',tbName:'" + tbName + "',cName:'" + cName + "',cName1:'" + cName1 + "'}";
+            var url = "apiService.asmx/isValid";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data, XMLHttpRequest) {
+                    $.alert({
+                        title: 'Success!',
+                        content: 'Status changed successfully',
+                    });
+
+                    if ($('#aTag_' + id).text() == 'Active') {
+                        $('#lbls_' + id).removeClass('badge-teal');
+                        $('#lbls_' + id).addClass('badge-danger');
+                        $('#aTag_' + id).text('');
+                        $('#aTag_' + id).text('Deactive');
+                    }
+                    else {
+                        $('#lbls_' + id).addClass('badge-teal');
+                        $('#lbls_' + id).removeClass('badge-danger');
+                        $('#aTag_' + id).text('');
+                        $('#aTag_' + id).text('Active');
+                    }
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+
+
+        function ExportExcel() {
+            window.location = "download-Customer-details.aspx?id=" + $('#hd_Userid').val();
+        }
+
+        function SMSStatus(id) {
+            var data = "{id:'" + id + "'}";
+            var url = "apiService.asmx/SetSMS";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data, XMLHttpRequest) {
+                    $.alert({
+                        title: 'Success!',
+                        content: 'SMS status changed successfully',
+                    });
+                    if ($('#lbl_' + id).text() == 'SMS Active') {
+                        $('#lbl_' + id).removeClass('smsActive');
+                        $('#lbl_' + id).addClass('smsDeactive');
+                        $('#lbl_' + id).text('');
+                        $('#lbl_' + id).text('SMS Deactive');
+                    }
+                    else {
+                        $('#lbl_' + id).addClass('smsActive');
+                        $('#lbl_' + id).removeClass('smsDeactive');
+                        $('#lbl_' + id).text('');
+                        $('#lbl_' + id).text('SMS Active');
+                    }
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" src="assets/js/ajaxupload.js"></script>
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+    <div id="customerBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-user" style="color:white;"></i> Customer </h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader" style="display:none;">
+                    <span><i class="fa fa-spinner fa-spin" style="color:white; font-size:117px; text-align:center;"></i></span>
+                </div>
+
+                <div id="alertdivision" class="alert alert-success" style="display:none;">
+                    <strong>Success!</strong>save successfully !!.
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12 float-lg-right">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+                                            <div class="white-box">
+                                                <div id="loader">
+
+                                                </div>
+                                                <form data-toggle="validator" enctype="multipart/form-data" id="FrCustomer">
+                                                    <div class="row">
+                                                        <div class="col-sm-3 col-lg-offset-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Pincode</label>
+                                                                <input type="text" class="form-control" name="txtpincode" id="txtpincode" onchange="callArea();" placeholder="Enter pincode" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top: 16px;">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="contactName">Customer Name</label>
+                                                                <input type="hidden" name="hd_Customer_id" id="hd_Customer_id" value="0">
+                                                                <input type="hidden" name="hd_Customer_id" id="hd_UserId" value="0">
+                                                                <input type="text" class="form-control" name="name" id="txtname" placeholder="Enter Customer Name" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Email</label>
+                                                                <input type="email" class="form-control" name="email" id="txtemailId" placeholder="Enter Email" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Mobile</label>
+                                                                <input type="text" class="form-control groupOfTexbox" name="mobile" value="" id="txtmobile" placeholder="Enter mobile" required maxlength="10">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Gender</label>
+                                                                <select id="ddGender" class="form-control">
+                                                                    <option value="0">---Select---</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                    <option value="Other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top: 16px;">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="contactName">Date of Birth</label>
+                                                                <input type="date" class="form-control" name="name" id="txtDob" placeholder="Enter Date of Birth" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="contactName">Date of Anniversary</label>
+                                                                <input type="date" class="form-control" name="name" id="txtDoa" placeholder="Enter Date of Anniversary" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Occupation</label>
+                                                                <select id="ddoccupation" class="form-control">
+                                                                    <option value="0">---Select---</option>
+                                                                    <option value="Business">Business</option>
+                                                                    <option value="Doctor">Doctor</option>
+                                                                    <option value="Homemaker">Homemaker</option>
+                                                                    <option value="Service">Service</option>
+                                                                    <option value="Student">Student</option>
+                                                                    <option value="Teacher">Teacher</option>
+                                                                    <option value="Other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Marital Status</label>
+                                                                <select id="ddmaritalstatus" class="form-control">
+                                                                    <option value="0">---Select---</option>
+                                                                    <option value="Married">Married</option>
+                                                                    <option value="Single">Single</option>
+                                                                    <option value="Divorced">Divorced</option>
+                                                                    <option value="Widowed ">Widowed</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Address</label>
+                                                                <textarea id="txtaddress" class="form-control" placeholder="Enter address"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">State</label>
+                                                                <input type="text" class="form-control" readonly name="txtstate" id="txtstate" placeholder="Enter state" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">City</label>
+                                                                <input type="text" class="form-control" readonly name="txtcity" id="txtcity" placeholder="Enter city" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Area (Location)</label>
+                                                                <select id="ddLocation" class="form-control">
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="photoLogo">Photo</label>
+
+                                                                <input type="hidden" id="hd_Image" />
+
+                                                                <div class="help-block with-errors"></div>
+                                                                <input type="button" name="myImage" class="button button-green upload"
+                                                                       id="btn_Image" value="Upload Image" />
+                                                                <a class="btn btn-success btn-icon-split" id="img_Image" style="display: none; color: white; padding: 1px !important;">
+                                                                    <span class="icon text-white-50">
+                                                                        <i class="fas fa-check"></i>
+                                                                    </span>
+                                                                    <span class="text">Successfully News Image uploaded..</span>
+                                                                </a>
+                                                                <img id="imgPath" class="imgPath" accept="image/*" style=" width: 100px; height: 100px; border-radius: 50%;" required />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div id="alertt" class="alert alert-success" style="display:none;">
+                                                            <strong>Success!</strong> save record.
+                                                        </div>
+                                                        <a href="#" class="btn btn-primary" onclick="AddCustomer();">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

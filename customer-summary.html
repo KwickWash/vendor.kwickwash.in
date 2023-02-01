@@ -1,0 +1,353 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Summary</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
+        }
+
+            body h1 {
+                font-weight: 300;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+                color: #000;
+            }
+
+            body h3 {
+                font-weight: 300;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-style: italic;
+                color: #555;
+            }
+
+            body a {
+                color: #06F;
+            }
+
+        .invoice-box {
+            max-width: 100%;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+
+                .invoice-box table td {
+                    padding: 5px;
+                    vertical-align: top;
+                }
+
+                .invoice-box table tr td:nth-child(2) {
+                    text-align: left;
+                    padding: 5px;
+                }
+
+                .invoice-box table tr.top table td {
+                    padding: 5px;
+                }
+
+                    .invoice-box table tr.top table td.title {
+                        font-size: 45px;
+                        color: #333;
+                        padding: 5px;
+                    }
+
+                .invoice-box table tr.information table td {
+                    padding: 5px;
+                }
+
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 1px solid #ddd;
+                    font-weight: bold;
+                }
+
+                .invoice-box table tr.details td {
+                }
+
+                .invoice-box table tr.item td {
+                    border-bottom: 1px solid #eee;
+                }
+
+                .invoice-box table tr.item.last td {
+                    border-bottom: none;
+                }
+
+                .invoice-box table tr.total td:nth-child(2) {
+                    border-top: 2px solid #eee;
+                    font-weight: bold;
+                }
+        #customers {
+            font-family: Arial, Helvetica, sans-serif !important;
+            border-collapse: collapse !important;
+            width: 100% !important;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd !important;
+                padding: 8px !important;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2 !important;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd !important;
+            }
+
+            #customers th {
+                padding-top: 12px !important;
+                padding-bottom: 12px !important;
+                text-align: left !important;
+                background-color: #04AA6D !important;
+            }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var id = findGetParameter('cid');
+            if (id != null || id != "0") {
+                GetCustomer(id);
+            }
+        });
+
+        function GetCustomer(id) {
+            var url = "https://api.kwickwash.com/api/profile/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#txtName').html(object.name);
+                            $('#txtAddress').html(object.address + ", <br/>, " + object.city + ", " + object.state + "-" + object.pincode);
+                            $('#txtMobile').html(object.mobile);
+                            GetShop(object.shopUserId);
+                            BindCustomerLedger(id);
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetShop(id) {
+            var url = "https://api.kwickwash.com/api/CompanyProfile/GetCompanyData?id=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+
+                            $('#txtShopAddress').html("<b>" + object.companyName + "</b><br/>" + object.communicationAddress + ", <br/>" + object.communicationState + ", " + object.communicationCity
+                                + "-" + object.communicationPincode + "<br> Mail :" + object.companyEmail + "<br/> Call :" + object.companyMobile + "<br/>");
+                            if (id == "2197") {
+                                $('#txtShopAddress').append("<b>GST NO : " + object.companyGSTno + "</b>");
+                            }
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function BindCustomerLedger(customerId) {
+            //alert(id);
+            $('#divCustomerList').html('<span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span>');
+            var url = "apiService.asmx/GetCustomerLedger";
+            var data = "{customerId:'" + customerId + "'}";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    _details = data.d;
+                    console.log(_details);
+                    var _htmlTable = '<table id="customers"  cellspacing="0" width="100%">';
+                    _htmlTable += '<thead><tr class="heading"><td style="display:none;">S.No.</td><td>Shop Name</td><td style="text-align:center;">Order No</td><td style="text-align:center;">Invoice No</td><td style="text-align:center;">Order Type</td><td style="text-align:center;">Order Request</td><td style="text-align:center;">Date</td><td style="text-align:right;">Dr Amt</td><td style="text-align:right;">Cr Amt</td><td style="text-align:right;">Balance</td></tr>';
+                    _htmlTable += '</thead><tbody id="listCustomer"';
+                    var tempOrderNo = 0;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+
+                            $('#txtTotalOrder').html(object.ttlorder);
+                            $('#txtOrderAmt').html(object.ttlorderamt);
+                            $('#txtTotalPaid').html(object.ttlpaidamt);
+                            $('#ttlunpaidamt').html(object.ttlunpaidamt);                            
+                            _htmlTable += '<tr>';
+                            var ctr = 1 + i;
+                            _htmlTable += '<td style="display:none;">' + ctr + '</td>';
+                            _htmlTable += '<td>' + object.companyName + '</td>';
+                            _htmlTable += ' <td style="text-align:center;">' + object.orderNo + '</td>';
+                            _htmlTable += ' <td style="text-align:center;">' + object.invoiceNo + '</td>';
+                            _htmlTable += ' <td style="text-align:center;">' + object.orderType + '</td>';
+                            _htmlTable += ' <td style="text-align:center;">' + object.dropRequest + '</td>';
+                            _htmlTable += ' <td style="text-align:center;">' + object.entryDate + '</td>';
+                            //_htmlTable += ' <td style="text-align:right;">' + Math.round(object.payableAmt).toFixed(2) + '</td>';
+                            if (tempOrderNo != object.orderNo) {
+                                tempOrderNo = object.orderNo;
+                                _htmlTable += ' <td style="text-align:right;">' + Math.round(object.debiteAmount).toFixed(2) + '</td>';
+                            }
+                            else {
+                                _htmlTable += ' <td style="text-align:center;"></td>';
+                            }
+                           
+                            _htmlTable += ' <td style="text-align:right;">' + Math.round(object.creditAmount).toFixed(2) + '</td>';
+                            _htmlTable += ' <td style="text-align:right;">' + Math.round(object.balance).toFixed(2) + '</td>';
+                        });
+                    }
+                    _htmlTable += '</tbody></table>'
+                    $('#CustomerLedgerList').html(_htmlTable);
+                    //$('#myTable2').DataTable({
+                    //    dom: 'Bfrtip',
+                    //    buttons: [
+                    //        'copy', 'csv', 'excel', 'pdf', 'print'
+                    //    ]
+                    //});
+
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+
+    </script>
+</head>
+<body>
+
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0" style="font-size:13px;">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title" valign="top">
+                                <img src="assets/img/logo.png" style="width:90%; max-width:200px;">
+                            </td>
+                            <td>
+                                <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">www.kwickwash.in</a><br />
+                                <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">contactus@kwickwash.in</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-size:12px;">
+                                <!--<b>Shop Address </b><br />-->
+                                <div id="txtShopAddress" style="width:300px;"></div><br />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:12px;">
+                                <b>Customer Details </b><br />
+                                Name : <span id="txtName"></span><br>
+                                Address : <span id="txtAddress"></span><br>
+                                Mobile :<span id="txtMobile"></span>
+                            </td>
+                            <td style="font-size:12px;">
+                                <table style="width:250px;">
+                                    <tr>
+                                        <th colspan="2">Order Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Order</td>
+                                        <td><span id="txtTotalOrder"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Total Order Amount</td>
+                                        <td><span id="txtOrderAmt"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Paid Amount</td>
+                                        <td><span id="txtTotalPaid"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Unpaid Amount</td>
+                                        <td><span id="ttlunpaidamt"></span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+        <table style="font-size:13px;">
+            <tbody id="CustomerLedgerList">
+            </tbody>
+        </table>
+        <p style="text-align:left;">
+            <h2 style="text-align:left; font-size:14px;">Terms & Condition : www.kwickwash.in/tco.html</h2>
+        </p>
+
+        <p style="background-color:black; font-size:12px; color:white; padding:7px;">
+            <b>Regd. Address </b>JOSHUA KWICKWASH (OPC) PRIVATE LIMITED<br />
+            A15/402, Bramha Avenue, NIBM Road, Near Jyoti Hotel, Kondhwa Khurd, PUNE, Maharashtra, India - 411048
+        </p>
+    </div>
+
+</body>
+</html>

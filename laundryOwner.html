@@ -1,0 +1,693 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss"></template>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">All Laundry Owner</h4>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a href="laundryOwnerAdd.html" class="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="ti-user"> </i> Add Laundry Owner
+                        </a>
+                    </div>
+                </div>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h4 style="color: green;"></h4>
+                            <h3 class="box-title m-b-0">All Laundry Owner</h3>
+                            <div class="table-responsive">
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>S. No.</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Status</th>
+                                            <th>Subscribe/Unsubscribe</th>
+                                            <th>End subscription date</th>
+                                            <th>Manage</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Status</th>
+                                            <th>Subscribe/Unsubscribe</th>
+                                            <th>End subscription date</th>
+                                            <th>Manage</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Admin Test</td>
+                                            <td>a@gmail.com</td>
+                                            <td>(994) 89658745</td>
+                                            <td>America City, KS, USA</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-teal">Subscribed</label>
+
+                                            </td>
+                                            <td>2020-08-28</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/315745">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/315745">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/315745">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/315745">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/315745" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1586240756.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1586240756.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Shyam sarma</td>
+                                            <td>shyamji@gmail.com</td>
+                                            <td>() 6359874563</td>
+                                            <td>Indore</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-teal">Subscribed</label>
+
+                                            </td>
+                                            <td>2020-07-22</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/wxde17">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/wxde17">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/wxde17">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/wxde17">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/wxde17" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1586244265.jpeg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1586244265.jpeg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Rahat</td>
+                                            <td>rahulrajpoot14357@gmail.com</td>
+                                            <td>(91) 89658745</td>
+                                            <td>indore</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-teal">Subscribed</label>
+
+                                            </td>
+                                            <td>2020-08-09</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/ABf291">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/ABf291">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/ABf291">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/ABf291">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/ABf291" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1587542173.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1587542173.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>QSADSD</td>
+                                            <td>kapdewala@gmail.com</td>
+                                            <td>(1684) 3242423423</td>
+                                            <td>1st floor pramukh plaza Vijay nagar Indore</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-danger">Unsubscribed</label>
+
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/tub092">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/tub092">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/tub092">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/tub092">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/tub092" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1593090934.gif" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1593090934.gif" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Aditya Mehna</td>
+                                            <td>adityam.bylo@gmail.com</td>
+                                            <td>(91) 9755598581</td>
+                                            <td>Vijay Nagar Indore</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-teal">Subscribed</label>
+
+                                            </td>
+                                            <td>2020-07-26</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/WXea36">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/WXea36">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/WXea36">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/WXea36">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/WXea36" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1593304590.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1593304590.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Mustapha Atrag </td>
+                                            <td>mustapha@gmail.com</td>
+                                            <td>(212) 0621877106</td>
+                                            <td>oulfa casablanca </td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-danger">Unsubscribed</label>
+
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/DE3595">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/DE3595">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/DE3595">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/DE3595">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/DE3595" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>7</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1594198331.jpg" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1594198331.jpg" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Akshay Cleaning services</td>
+                                            <td>akashay@gmail.com</td>
+                                            <td>(91) 9999999</td>
+                                            <td>Dilshad Colony</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-danger">Unsubscribed</label>
+
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/RS7197">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/RS7197">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/RS7197">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/RS7197">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/RS7197" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>8</td>
+                                            <td>
+                                                <a href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1594445695.png" target="_blank">
+                                                    <img style="border-radius: 50%;width: 40px;height: 40px;" src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/images/user/1594445695.png" alt="Image not Available" />
+                                                </a>
+                                            </td>
+                                            <td>Mohammed Al-Faifi</td>
+                                            <td>mfaifi@outlook.sa</td>
+                                            <td>(966) 500058108</td>
+                                            <td>Tuu</td>
+                                            <td>
+                                                <label class="badge badge-teal">Active</label>
+
+                                            </td>
+                                            <td>
+                                                <label class="badge badge-danger">Unsubscribed</label>
+
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a title="Verified" class="disabled" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/IJ733d">Activate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Not Verified" class="" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/changeLaundryOwnerStatus/IJ733d">Deactivate</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="Update" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/updateLaundryOwner/IJ733d">Update</a>
+                                                        </li>
+                                                        <li>
+                                                            <a title="View Detail" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/viewOwnerDetail/IJ733d">View Detail</a>
+                                                            <!-- <a title="Payment history" href="http://phpstack-390430-1228229.cloudwaysapps.com/admin/laundry/paymentHistory/IJ733d" >Payment history</a> -->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style> <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="http://phpstack-390430-1228229.cloudwaysapps.com/admin/assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                var mode = 'iframe'; //popup
+                var close = mode == "popup";
+                var options = {
+                    mode: mode,
+                    popClose: close
+                };
+                $("div.printableArea").printArea(options);
+            });
+        });
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable2').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>Add Referral Partner - KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .form-control {
+            border: 1px solid darkgray;
+        }
+        .classReferral {
+            background-color: darkmagenta;
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // jQuery ".Class" SELECTOR.
+            $(document).ready(function () {
+                $('.groupOfTexbox').keypress(function (event) {
+                    return isNumber(event, this)
+                });
+            });
+            // THE SCRIPT THAT CHECKS IF THE KEY PRESSED IS A NUMERIC OR DECIMAL VALUE.
+            function isNumber(evt, element) {
+
+                var charCode = (evt.which) ? evt.which : event.keyCode
+
+                if (
+                    // (charCode != 45 || $(element).val().indexOf('-') != -1) &&      // Check minus and only once.
+                    (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // Check dot and only once.
+                    (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+        </script>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Referral Partner</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="white-box" style="background-color:#BFC9CA !important;">
+                                <h5 style="color: green;"></h5>
+                                <h4 style="color: red;"></h4>
+                                <h3 class="box-title m-b-0 text-center">Referral Partner Application Form</h3>
+                                <!--<p class="text-muted m-b-30 font-13">Please fill all of fields Properly </p>-->
+                                <form data-toggle="validator" enctype="multipart/form-data" id="FrProfile">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Profile Type</label>
+                                                <input type="hidden" name="hd_companyProfile_Id" id="hd_companyProfile_Id" value="0">
+                                                <select id="ddProfileType" class="form-control" onchange="callCompType();">
+                                                    <option value="0">---Select Profile Type---</option>
+                                                    <option value="Individual">Individual</option>
+                                                    <option value="Company">Company</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" style="display:none;" id="compType">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Type</label>
+                                                <input type="hidden" name="user_id" value="">
+                                                <select id="ddCompanyType" class="form-control" onchange="callCompanyDetail();">
+                                                    <option value="0">---Select Company Type---</option>
+                                                    <option value="Sole proprietorship">Sole proprietorship</option>
+                                                    <option value="Partnership">Partnership</option>
+                                                    <option value="Private Ltd Company">Private Ltd Company</option>
+                                                    <option value="Limited Liability Partnership(LLP)">Limited Liability Partnership(LLP)</option>
+                                                    <option value="Public Ltd Company">Public Ltd Company</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="companyDT" style="background-color: #AAB7B8; border-radius: 3px; padding: 10px; display:none;">
+                                        <div class="col-sm-4" id="divCompanyName" style="display:none;">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Name</label>
+                                                <input type="text" class="form-control" name="name" id="txtCompanyName" placeholder="Enter company name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4" id="divCompanyMobile" style="display:none;">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Mobile</label>
+                                                <input type="text" class="form-control" name="name" id="txtCompanyMobile" placeholder="Enter company mobile" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4" id="divCompanyEmail" style="display:none;">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Email</label>
+                                                <input type="text" class="form-control" name="name" id="txtCompanyEmail" placeholder="Enter company email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Registation No</label>
+                                                <input type="text" class="form-control" name="txtCompanyRegistationNo" id="txtCompanyRegistationNo" placeholder="Enter Company Registation No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="companyDoc">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Registation Document</label>
+
+                                                <input type="hidden" id="hd_CompanyRegistationNoImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage" class="button button-green upload"
+                                                       id="btn_Image" value="Upload Image" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">GST No</label>
+                                                <input type="text" class="form-control" name="txtCompanyGSTno" id="txtCompanyGSTno" placeholder="Enter Company GST No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="companyDoc">
+                                            <div class="form-group">
+                                                <label class="control-label">GST </label>
+
+                                                <input type="hidden" id="hd_CompanyGSTnoImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage1" class="button button-green upload"
+                                                       id="btn_Image1" value="Upload Image" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image1" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Company PAN </label>
+                                                <input type="text" class="form-control" name="txtCompanyPAN" id="txtCompanyPAN" placeholder="Enter Company PAN" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="companyDoc">
+                                            <div class="form-group">
+                                                <label class="control-label">Company PAN</label>
+
+                                                <input type="hidden" id="hd_CompanyPANImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage2" class="button button-green upload"
+                                                       id="btn_Image2" value="Upload Image" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image2" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-top: 16px;">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label" id="contactName">Contact Name</label>
+                                                <input type="hidden" name="user_id" value="">
+                                                <input type="text" class="form-control" name="name" id="txtname" placeholder="Enter name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Email</label>
+                                                <input type="email" class="form-control" name="email" id="txtemailId" placeholder="Enter Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Mobile</label>
+                                                <input type="text" class="form-control groupOfTexbox" name="mobile" value="" id="txtmobile" placeholder="Enter mobile" required maxlength="10">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Aadhar Card No</label>
+                                                <input type="text" class="form-control" name="txtAadharCardNo" id="txtAadharCardNo" placeholder="Enter Aadhar Card No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Upload Aadhar</label>
+
+                                                <input type="hidden" id="hd_AadharCardNoImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage3" class="button button-green upload"
+                                                       id="btn_Image3" value="Upload Aadhar" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image3" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">PAN No</label>
+                                                <input type="text" class="form-control" name="txtPanNo" id="txtPanNo" placeholder="Enter PAN No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Upload PAN</label>
+                                                <input type="hidden" id="hd_PanNoImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage4" class="button button-green upload"
+                                                       id="btn_Image4" value="Upload PAN" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image4" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Communication Address</label>
+                                                <textarea id="txtcommaddress" class="form-control" placeholder="Enter communication address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">State</label>
+                                                <input type="text" class="form-control" name="txtstate" id="txtstate" placeholder="Enter state" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="txtcity" id="txtcity" placeholder="Enter city" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Area (Location)</label>
+                                                <select id="ddLocation" class="form-control">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Pincode</label>
+                                                <input type="text" class="form-control" name="txtpincode" id="txtpincode" onchange="callArea();" placeholder="Enter pincode" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label" id="addressLabel">Permanent Address</label>
+                                                <textarea id="txtPermanentAddress" class="form-control" placeholder="Enter  address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">State</label>
+                                                <input type="text" class="form-control" name="txtPermanentstate" id="txtPermanentstate" readonly placeholder="Enter state" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">City</label>
+                                                <input type="text" class="form-control" name="txtPermanentcity" id="txtPermanentcity" readonly placeholder="Enter city" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Area (Location)</label>
+                                                <select id="ddLocation1" class="form-control">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Pincode</label>
+                                                <input type="text" class="form-control" name="txtPermanentpincode" id="txtPermanentpincode" onchange="callArea1();" placeholder="Enter pincode" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Bank Name</label>
+                                                <input type="text" class="form-control" name="txtbankname" id="txtbankname" placeholder="Enter bank name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Bank Account</label>
+                                                <input type="text" class="form-control" name="txtbankAccount" id="txtbankAccount" placeholder="Enter bank account" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Bank Ifsc</label>
+                                                <input type="text" class="form-control" name="txtbankIfsc" id="txtbankIfsc" placeholder="Enter bank ifsc" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Bank Branch</label>
+                                                <input type="text" class="form-control" name="txtbankBranch" id="txtbankBranch" placeholder="Enter bank branch" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="GSTind">
+                                            <div class="form-group">
+                                                <label class="control-label">GST No</label>
+                                                <input type="text" class="form-control" name="txtGstno" id="txtGstno" placeholder="Enter GST No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="Percent">
+                                            <div class="form-group">
+                                                <label class="control-label">Percent %</label>
+                                                <input type="text" class="form-control" name="txtPercent" id="txtPercent" placeholder="Enter Percent %" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3" id="gstDocInd">
+                                            <div class="form-group">
+                                                <label class="control-label">GST </label>
+
+                                                <input type="hidden" id="hd_GSTImage" />
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage5" class="button button-green upload"
+                                                       id="btn_Image5" value="Upload Image" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image5" style="display: none; font-size:9px; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="control-label" id="photoLogo">Photo</label>
+
+                                                <input type="hidden" id="hd_Logo" />
+
+                                                <div class="help-block with-errors"></div>
+                                                <input type="button" name="myImage6" class="button button-green upload"
+                                                       id="btn_Image6" value="Upload Image" />
+                                                <a class="btn btn-success btn-icon-split" id="img_Image6" style="display: none; color: white; padding: 1px !important;">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-check"></i>
+                                                    </span>
+                                                    <span class="text">Successfully uploaded..</span>
+                                                </a>
+                                                <img id="imgPath6" class="imgPath" accept="image/*" style=" width: 100px; height: 100px; border-radius: 50%;" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div id="alertt" class="alert alert-success" style="display:none;">
+                                            <strong>Success!</strong> save record.
+                                        </div>
+                                        <span id="loader" style="display:none;">
+                                            <i class="fa fa-spinner fa-spin" style="font-size: 42px; color: darkmagenta; padding: 3px;"></i>
+                                        </span>
+                                        <a href="#" id="btnSave" class="btn btn-primary" onclick="addVendor();">Submit</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- /.row -->
+                        <!-- ============================================================== -->
+                        <!-- /row -->
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style>
+
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+            /// Upload Company Registation Document ///
+            var button = $('#btn_Image'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_CompanyRegistationNoImage').val() !== "") { $.fn.DeleteFile($('#hd_CompanyRegistationNoImage').val()); } } catch (e) { }
+                    $('#hd_CompanyRegistationNoImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image').show();
+                }
+            });
+
+            /// Upload Company GST Document ///
+            var button = $('#btn_Image1'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage1',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_CompanyRegistationNoImage').val() !== "") { $.fn.DeleteFile($('#hd_CompanyRegistationNoImage').val()); } } catch (e) { }
+                    $('#hd_CompanyRegistationNoImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image1').show();
+                }
+            });
+
+            /// Upload Company PAN Document ///
+            var button = $('#btn_Image2'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage2',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_CompanyPANImage').val() !== "") { $.fn.DeleteFile($('#hd_CompanyPANImage').val()); } } catch (e) { }
+                    $('#hd_CompanyPANImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image2').show();
+                }
+            });
+
+             /// Upload Person Aadhar ///
+            var button = $('#btn_Image3'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage3',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_AadharCardNoImage').val() !== "") { $.fn.DeleteFile($('#hd_AadharCardNoImage').val()); } } catch (e) { }
+                    $('#hd_AadharCardNoImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image2').show();
+                }
+            });
+
+            /// Upload Person PAN ///
+            var button = $('#btn_Image4'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage4',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_PanNoImage').val() !== "") { $.fn.DeleteFile($('#hd_PanNoImage').val()); } } catch (e) { }
+                    $('#hd_PanNoImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image4').show();
+                }
+            });
+
+            /// Upload Person GST ///
+            var button = $('#btn_Image5'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage5',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_GSTImage').val() !== "") { $.fn.DeleteFile($('#hd_GSTImage').val()); } } catch (e) { }
+                    $('#hd_GSTImage').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image5').show();
+                }
+            });
+
+              /// Upload Person/Company Photo/Logo ///
+            var button = $('#btn_Image6'), interval;
+            new AjaxUpload(button, {
+                action: 'services/vendorImg.ashx',
+                name: 'myImage6',
+                onSubmit: function (file, ext) {
+                    if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)) {
+                        button.text('Uploading');
+                        this.disable();
+                        interval = window.setInterval(function () {
+                            var text = button.text();
+                            if (text.length < 13) {
+                                button.text(text + '.');
+                            } else {
+                                button.text('Uploading');
+                            }
+                        }, 200);
+
+                    } else {
+                        alert("Error: jpg|png|jpeg|gif types file are allowed");
+                        return false;
+                    }
+                },
+                onComplete: function (file, response) {
+                    button.val('Upload Image');
+                    window.clearInterval(interval);
+                    this.enable();
+                    try { if ($('#hd_Logo').val() !== "") { $.fn.DeleteFile($('#hd_Logo').val()); } } catch (e) { }
+                    $('#hd_Logo').val("upload/vendorImg/" + response);
+                    //$("#imgPath").attr('src', "upload/vendorImg/" + response);
+                    $('#img_Image6').show();
+                }
+            });
+
+            var vid = findGetParameter('vid');
+            if (vid != null || vid != "0") {
+                ReadData(vid);
+            }
+        });
+
+        function ReadData(vid) {
+            var url = "https://api.kwickwash.com/api/CompanyProfile/" + vid;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            //alert(object.companyProfileId);
+                            $('#hd_companyProfile_Id').val(object.companyProfileId);
+                            $('#ddProfileType').val(object.profileType);
+
+                            $('#ddCompanyType').val(object.companyType);
+                            callCompType();
+                            callCompanyDetail();
+                            $('#txtCompanyName').val(object.companyName);
+                            $('#txtCompanyMobile').val(object.companyMobile);
+                            $('#txtCompanyEmail').val(object.companyEmail);
+                            $('#txtCompanyRegistationNo').val(object.companyRegistrationNo);
+                            $('#hd_CompanyRegistationNoImage').val(object.companyRegistrationDocument);
+                            $('#txtCompanyGSTno').val(object.companyGSTno);
+                            $('#hd_CompanyGSTnoImage').val(object.companyGSTimg);
+                            $('#txtCompanyPAN').val(object.companyPAN);
+                            $('#hd_CompanyPANImage').val(object.companyPANimg);
+
+                            $('#txtname').val(object.authorizedPersonName);
+                            $('#txtemailId').val(object.email);
+                            $('#txtmobile').val(object.mobile);
+                            $('#txtAadharCardNo').val(object.aadharNo);
+                            $('#hd_AadharCardNoImage').val(object.aadharImg);
+                            $('#txtPanNo').val(object.paNno);
+                            $('#hd_PanNoImage').val(object.paNimg);
+
+                            $('#txtcommaddress').val(object.communicationAddress);
+                            $('#txtstate').val(object.communicationState);
+                            $('#txtcity').val(object.communicationCity);
+                            $('#txtpincode').val(object.communicationPincode);
+
+                            $('#txtPermanentAddress').val(object.regAddess);
+                            $('#txtPermanentstate').val(object.regState);
+                            $('#txtPermanentcity').val(object.regCity);
+                            $('#txtPermanentpincode').val(object.regPincode);
+
+                            $('#txtbankname').val(object.bankName);
+                            $('#txtbankAccount').val(object.bankAccount);
+                            $('#txtbankIfsc').val(object.bankIFSC);
+                            $('#txtbankBranch').val(object.bankBranch);
+                            $('#hd_Logo').val(object.logoPhoto);
+                            $('#ddLocation').val(object.Location);
+                            $('#ddLocation1').val(object.Location1);
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+
+        function addVendor() {
+
+            $('#loader').show();
+            $('#btnSave').hide();
+
+            var vendorId = '1';
+            var companyProfileId = $('#hd_companyProfile_Id').val();
+            var profileType = $('#ddProfileType').val();
+
+            var companyType,
+                companyName,
+                companyMobile,
+                companyEmail,
+                companyRegistrationNo,
+                companyRegistrationDocument,
+                companyGSTno,
+                companyGSTimg,
+                companyPAN,
+                companyPANimg,
+                GSTno,
+                GSTimg;
+
+            if (profileType == 'Individual') {
+                companyType = '0';
+                companyName = '0';
+                companyMobile = '0';
+                companyEmail = '0';
+                companyRegistrationNo = '0';
+                companyRegistrationDocument = '0';
+                companyGSTno = '0';
+                companyGSTimg = '0';
+                companyPAN = '0';
+                companyPANimg = '0';
+                GSTno = $('#txtGstno').val();
+                GSTimg = $('#hd_GSTImage').val();
+            }
+            else {
+                companyType = $('#ddCompanyType').val();
+                companyName = $('#txtCompanyName').val();
+                companyMobile = $('#txtCompanyMobile').val();
+                companyEmail = $('#txtCompanyEmail').val();
+                companyRegistrationNo = $('#txtCompanyRegistationNo').val();
+                companyRegistrationDocument = $('#hd_CompanyRegistationNoImage').val();
+                companyGSTno = $('#txtCompanyGSTno').val();
+                companyGSTimg = $('#hd_CompanyGSTnoImage').val();
+                companyPAN = $('#txtCompanyPAN').val();
+                companyPANimg = $('#hd_CompanyPANImage').val();
+                GSTno = '0';
+                GSTimg = '0';
+            }
+           
+            var AuthorizedPersonName = $('#txtname').val();
+            var Email = $('#txtemailId').val();
+            var Mobile = $('#txtmobile').val();
+            var AadharNo = $('#txtAadharCardNo').val();
+            var AadharImg = $('#hd_AadharCardNoImage').val();
+            var PANno = $('#txtPanNo').val();
+            var PANimg = $('#hd_PanNoImage').val();
+            var CommunicationAddress = $('#txtcommaddress').val();
+            var CommunicationState = $('#txtstate').val();
+            var CommunicationCity = $('#txtcity').val();
+            var CommunicationPincode = $('#txtpincode').val();
+            var RegAddess = $('#txtPermanentAddress').val();
+            var RegState = $('#txtPermanentstate').val();
+            var RegCity = $('#txtPermanentcity').val();
+            var RegPincode = $('#txtPermanentpincode').val();
+            var BankName = $('#txtbankname').val();
+            var BankAccount = $('#txtbankAccount').val();
+            var BankIFSC = $('#txtbankIfsc').val();
+            var BankBranch = $('#txtbankBranch').val();           
+            var LogoPhoto = $('#hd_Logo').val();
+            var Latitude = '0';
+            var Longitude = '0';
+            var Status = '1';
+            var Location = $('ddLocation').val();
+            var Location1 = $('ddLocation1').val();
+
+            $(".error").remove();
+            if (profileType == "0") {
+                $('#ddProfileType').after('<span class="error">Please select profile type.</span>');
+                $('#ddProfileType').addClass('txterror');
+            }
+            else if (Email.length == "") {
+                $('#txtname').remove('txterror');
+                $('#txtname').addClass('txtsussess');
+                $('#txtemailId').after('<span class="error">This field is required</span>');
+                $('#txtemailId').addClass('txterror');
+            }
+            else {
+                var data = "{vendorId:'" + vendorId + "',profileType:'" + profileType + "',companyType:'" + companyType + "',companyName:'" + companyName
+                    + "',companyMobile:'" + companyMobile + "',companyEmail:'" + companyEmail + "',companyRegistrationNo:'" + companyRegistrationNo
+                    + "',companyRegistrationDocument:'" + companyRegistrationDocument + "',companyGSTno:'" + companyGSTno + "',companyGSTimg:'" + companyGSTimg
+                    + "',companyPAN:'" + companyPAN + "',companyPANimg:'" + companyPANimg + "',AuthorizedPersonName:'" + AuthorizedPersonName + "',Email:'" + Email
+                    + "',Mobile:'" + Mobile + "',AadharNo:'" + AadharNo + "',AadharImg:'" + AadharImg + "',PANno:'" + PANno
+                    + "',PANimg:'" + PANimg + "',CommunicationAddress:'" + CommunicationAddress + "',CommunicationState:'" + CommunicationState + "',CommunicationCity:'" + CommunicationCity
+                    + "',CommunicationPincode:'" + CommunicationPincode + "',RegAddess:'" + RegAddess + "',RegState:'" + RegState + "',RegCity:'" + RegCity
+                    + "',RegPincode:'" + RegPincode + "',BankName:'" + BankName + "',BankAccount:'" + BankAccount + "',BankIFSC:'" + BankIFSC
+                    + "',BankBranch:'" + BankBranch + "',GSTno:'" + GSTno + "',GSTimg:'" + GSTimg + "',LogoPhoto:'" + LogoPhoto + "',Latitude:'" + Latitude
+                    + "',Longitude:'" + Longitude + "',Status:'" + Status + "',companyProfileId:'" + companyProfileId + "',Location:'" + Location
+                    + "',Location1:'" + Location1 + "'}";
+
+                var url = "https://api.kwickwash.com/api/companyprofile";
+
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        if (data == "1") {
+                            document.getElementById("FrProfile").reset();
+                            $('#alertt').fadeIn(2000);
+                            $('#alertt').fadeOut(3000);
+                            $('#loader').hide();
+                            $('#btnSave').show();
+                            $.alert({
+                                title: 'Success!',
+                                content: 'save successfully',
+                            });
+                            window.location.replace('referral-partner.html');
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        }
+
+        function callCompType() {
+            var profileType = $('#ddProfileType').val();
+            if (profileType == 'Company') {
+                $('#compType').show();
+                $('#photoLogo').html('Logo');
+                $('#GSTind').hide();
+                $('#gstDocInd').hide();
+            }
+            else {
+                $('#compType').hide();
+                $('#divCompanyName').hide();
+                $('#divCompanyMobile').hide();
+                $('#divCompanyEmail').hide();
+                $('#companyDT').hide();
+                $('#addressLabel').html('Permanent Address');
+                $('#contactName').html('Contact Name');
+                $('#photoLogo').html('Photo');
+                $('#GSTind').show();
+                $('#gstDocInd').show();
+            }
+        }
+
+        function callCompanyDetail() {
+            var companyType = $('#ddCompanyType').val();
+            if (companyType != '0') {
+                $('#divCompanyName').show();
+                $('#divCompanyMobile').show();
+                $('#divCompanyEmail').show();
+                $('#companyDT').show();               
+            }
+            else {
+                $('#divCompanyName').hide();
+                $('#divCompanyMobile').hide();
+                $('#divCompanyEmail').hide();
+                $('#companyDT').hide();
+            }
+
+            if (companyType == 'Sole proprietorship') {
+                $('#addressLabel').html('Permanent Address');
+                $('#contactName').html('Proprietor Name');
+                $('#photoLogo').html('Logo');
+            }
+            else {
+                $('#addressLabel').html('Reg. Address');
+                $('#contactName').html('Authorized Person Name');
+                $('#photoLogo').html('Logo');
+            }
+        }
+
+       function callArea() {
+            var pincode = $('#txtpincode').val();
+            var url = "https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/" + pincode;
+            var option = '<option value="0">Select Location</option>';
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                dataType: "json",
+                type: "GET",
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            var area = object.PostOffice;
+                            for (i = 0; i < area.length; i++) {
+                                if (i == 1) {
+                                    $('#txtcity').val(area[i].District);
+                                    $('#txtstate').val(area[i].State);
+                                }
+                                option += '<option value="' + area[i].Name + '">' + area[i].Name + '</option>';
+                            }
+                            $('#ddLocation').html(option);
+                        });
+                    }
+                }
+            });
+        }
+
+        function callArea1() {
+            var pincode = $('#txtPermanentpincode').val();
+            var url = "https://cors-anywhere.herokuapp.com/https://api.postalpincode.in/pincode/" + pincode;
+             var option = '<option value="0">Select Location</option>';
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                dataType: "json",
+                type: "GET",
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            var area = object.PostOffice;
+                            for (i = 0; i < area.length; i++) {
+                               if (i == 1) {
+                                    $('#txtPermanentcity').val(area[i].District);
+                                    $('#txtPermanentstate').val(area[i].State);
+                                }
+                                option += '<option value="' + area[i].Name + '">' + area[i].Name + '</option>';
+                            }
+                             $('#ddLocation1').html(option);
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" src="assets/js/ajaxupload.js"></script>
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable2').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+    <!--Style Switcher -->
+    <script src="assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+    <script src="assets/js/jasny-bootstrap.js"></script>
+    <!-- jQuery file upload -->
+    <script src="assets/plugins/bower_components/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+
+</body>
+</html>

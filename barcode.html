@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Barcode</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
+        }
+
+            body h1 {
+                font-weight: 300;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+                color: #000;
+            }
+
+            body h3 {
+                font-weight: 300;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-style: italic;
+                color: #555;
+            }
+
+            body a {
+                color: #06F;
+            }
+
+      /*  .invoice-box {
+            max-width: 150px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 8px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+            height: 150px;
+            float: left;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+        }*/
+
+        .invoice-box {
+            max-width: 116px;
+            margin: 0px;
+            padding: 0px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+            font-size: 8px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+            height: 142px;
+            float: left;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+        }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+
+                .invoice-box table td {
+                    padding: 5px;
+                    vertical-align: top;
+                }
+
+                .invoice-box table tr td:nth-child(2) {
+                    text-align: right;
+                    padding: 5px;
+                }
+
+                .invoice-box table tr.top table td {
+                    padding: 5px;
+                }
+
+                    .invoice-box table tr.top table td.title {
+                        font-size: 45px;
+                        color: #333;
+                        padding: 5px;
+                    }
+
+                .invoice-box table tr.information table td {
+                    padding: 5px;
+                }
+
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 1px solid #ddd;
+                    font-weight: bold;
+                }
+
+                .invoice-box table tr.details td {
+                }
+
+                .invoice-box table tr.item td {
+                    border-bottom: 1px solid #eee;
+                }
+
+                .invoice-box table tr.item.last td {
+                    border-bottom: none;
+                }
+
+                .invoice-box table tr.total td:nth-child(2) {
+                    border-top: 2px solid #eee;
+                    font-weight: bold;
+                }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-barcode.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-barcode.min.js"></script>
+    <style type="text/css">
+        .barcodeTarget {
+            float: left;
+            margin-top: 4px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var id = findGetParameter('oid');
+            if (id != null || id != "0") {
+
+                BindOrderItem(id)
+            }
+        });
+
+        function BindOrderItem(id) {
+            var url = "https://api.kwickwash.com/api/placeorder/GetDataOrder?id=" + id + "&status=1";
+            var ctr = 0;
+            var barCtr = 0;
+            var ctr1 = 0;
+            var htmlTag = '';
+            var counting = 0;
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var orderid = 0;
+                    var userid = 0;
+                    var suserid = 0;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#loaderBox').show();
+                            orderid = object.orderId;
+                            userid = object.cUserid;
+                            suserid = object.sUserid;
+                            ctr1++;
+                            counting = object.totalQty;
+                            console.log(object.serviceName);
+                            if (object.serviceName != 'Add on') {
+                                for (j = 0; j < counting; j++) {
+
+                                    htmlTag += '<div class="invoice-box">';
+                                    htmlTag += '<div class="col-lg-12">';
+                                    htmlTag += '<span class="Shp">SC :' + suserid + '</span><br>';
+                                    htmlTag += '<span class="txtName"></span><br>';
+                                    htmlTag += '<span class="txtOrderNo">O : ' + orderid + '</span><br>';
+                                    htmlTag += '<span class="txtQty"></span>';
+                                    htmlTag += '</div>';
+                                    htmlTag += '<input type="text" id="barcodeValue' + barCtr + '" value="' + orderid + '' + object.invoiceNo + '" class="input_box" style="display:none;">';
+                                    htmlTag += '<div id="barcodeTarget' + barCtr + '" class="barcodeTarget"></div>';
+                                    htmlTag += '<div class="col-lg-12">';
+                                    htmlTag += '<div class="col-lg-6">';
+                                    htmlTag += '<span id="txtProCode' + j + '">P - ' + object.productCode + '</span>';
+                                    htmlTag += '</div>';
+                                    htmlTag += '<div class="col-lg-6">';
+                                    htmlTag += '<span id="txtSerCode' + j + '">S - ' + object.serviceCode + '</span>';
+                                    htmlTag += '</div>';
+                                    htmlTag += '<div class="col-lg-6">';
+                                    ctr = j + 1;
+                                    var sl = j + 1;
+                                    htmlTag += '<div id="ctrlable' + j + '">C : ' + sl + ' of ' + object.totalQty + '<br/> N : ' + ctr1 + ' of ' + data.length + '</div>';
+                                    htmlTag += '</div></div></div>';
+                                    barCtr++;
+                                }
+
+                                $('#barCodeBox').html(htmlTag);
+                            }
+
+                        });
+
+                        GetOrderdt(orderid);
+                        GetCustomer(userid);
+                        GetShop(suserid);
+                        for (k = 0; k < barCtr; k++) {
+
+                            $('#loaderBox').hide();
+                            generateBarcode(k);
+                        }
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+                            
+
+        function GetOrderdt(id) {
+            var url = "https://api.kwickwash.com/api/orderlist/GetData?orderId=" + id + "&status=1";
+            var ctr = 0;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('.txtQty').html('TC : ' + object.ttlQty);
+
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetCustomer(id) {
+            var url = "https://api.kwickwash.com/api/profile/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('.txtName').html(object.name);
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetShop(id) {
+            var url = "https://api.kwickwash.com/api/CompanyProfile/GetCompanyData?id=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+
+                            $('#txtShopAddress').html(object.regAddess + ", <br/>" + object.regState + ", " + object.regCity
+                                + "-" + object.regPincode + "<br> Mail :" + object.companyEmail + "<br/> Call :" + object.companyMobile);
+
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function generateBarcode(ctr) {
+            var value = $("#barcodeValue" + ctr).val();
+            var btype = $('select[name="btype"]').val();
+            var renderer = $('select[name="renderer"]').val();
+
+
+            var settings = {
+                output: renderer,
+                bgColor: '#FFFFFF',
+                color: '#000000',
+                barWidth: '1',
+                barHeight: '50',
+                moduleSize: '5',
+                posX: '10',
+                posY: '20',
+                addQuietZone: '1'
+            };
+
+            if (renderer == 'canvas') {
+                clearCanvas();
+                $("#barcodeTarget0").hide();
+                $("#canvasTarget").show().barcode(value, btype, settings);
+            } else {
+                $("#canvasTarget").hide();
+
+                $("#barcodeTarget" + ctr).html("").show().barcode(value, btype, settings);
+
+            }
+        }
+
+        function showConfig1D() {
+            $('.config .barcode1D').show();
+            $('.config .barcode2D').hide();
+        }
+
+        function showConfig2D() {
+            $('.config .barcode1D').hide();
+            $('.config .barcode2D').show();
+        }
+
+        function clearCanvas() {
+            var canvas = $('#canvasTarget').get(0);
+            var ctx = canvas.getContext('2d');
+            ctx.lineWidth = 1;
+            ctx.lineCap = 'butt';
+            ctx.fillStyle = '#FFFFFF';
+            ctx.strokeStyle = '#000000';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeRect(0, 0, canvas.width, canvas.height);
+        }
+
+        $(function () {
+            $('input[name=btype]').click(function () {
+                if ($(this).attr('id') == 'datamatrix') showConfig2D(); else showConfig1D();
+            });
+            $('input[name=renderer]').click(function () {
+                if ($(this).attr('id') == 'canvas') $('#miscCanvas').show(); else $('#miscCanvas').hide();
+            });
+            generateBarcode();
+        });
+
+    </script>
+
+</head>
+<body>
+    <div align="center">
+        <!--<h2>Barcode</h2>-->
+        <div class="frmContact">
+            <div class="field-row" style="display:none;">
+                <label>Fill The Code</label> <span class="info"></span>
+                <br />
+
+            </div>
+            <div class="field-row" style="display:none;">
+                <div class="contact-row column-right">
+                    <!--<label>Barcode Type</label>-->
+                    <span class="info"></span>
+                    <br />
+                    <select name="btype" class="select_box">
+                        <option value="ean8">EAN 8</option>
+                        <option value="ean13">EAN 13</option>
+                        <option value="upc">UPC</option>
+                        <option value="std25">standard 2 of 5 (industrial)</option>
+                        <option value="int25">interleaved 2 of 5</option>
+                        <option value="code11">code 11</option>
+                        <option value="code39">Code 39</option>
+                        <option value="code93">code 93</option>
+                        <option value="code93">code 93</option>
+                        <option value="code128">code 128</option>
+                        <option value="codabar">codabar</option>
+                        <option value="msi">MSI</option>
+                        <option value="datamatrix">Data Matrix</option>
+                    </select>
+
+
+                </div>
+                <div class="contact-row cvv-box" style="display:none;">
+                    <label>Format</label> <span class="info"></span><br />
+                    <select name="renderer" class="select_box">
+                        <option value="css">CSS</option>
+                        <option value="bmp">BMP (not usable in IE)</option>
+                        <option value="svg">SVG (not usable in IE)</option>
+                        <option value="canvas">Canvas (not usable in IE)</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div>
+                <input style="display:none;" type="button" onclick="generateBarcode();" value="Generate the barcode" class="btnAction">
+            </div>
+
+        </div>
+    </div>
+    <span id="loaderBox" style="display:none;">
+        <img style="height:150px; width:150px;" src="assets/img/loader.gif" />
+    </span>
+    <div id="barCodeBox"></div>
+
+
+</body>
+</html>

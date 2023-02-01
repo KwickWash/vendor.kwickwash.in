@@ -1,0 +1,932 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>Order History - KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classOrderHistory {
+            background-color: #6ab215;
+        }
+
+        .dataTable thead .sorting:after {
+            content: "\f0dc";
+            float: right;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: #9FCB39 !important;
+            font-size: 16px;
+        }
+
+        .dataTable thead .sorting:after {
+            opacity: 0.9 !important;
+            content: "\e150";
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Order History</h4>
+                    </div>
+
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+
+                        <!-- </div> -->
+                        <!-- /.row -->
+                        <!-- ============================================================== -->
+                        <!-- /row -->
+                        <!-- <div class="row"> -->
+                        <!--<div class="col-sm-12">
+                            <div class="white-box">
+                                <h3 class="box-title m-b-0">Order List</h3>
+                                <div class="table-responsive" style="overflow: auto;">
+                                    <table id="myShopOrderList" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="display:none;">#</th>
+                                                <th>Order #</th>
+                                                <th>Order-Type</th>
+                                                <th>Drop-Request</th>
+                                                <th>Customer-Name</th>
+                                                <th>Mobile-No.</th>
+                                                <th>Order-Date</th>
+                                                <th>Order-Status</th>
+                                                <th>Delivery-Date</th>
+                                                <th>Amount</th>
+                                                <th>Payment-Mode</th>
+                                                <th>Payment-Status</th>
+                                                <th>Delivery-Status</th>
+                                                <th>Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listMyShopOrder">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <div class="col-sm-12">
+                            <div class="white-box">
+                                <h3 class="box-title m-b-0">Order List</h3>
+                                <div class="table-responsive" style="overflow: auto;">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="myTable2_length">
+                                                <label>
+                                                    Show
+                                                    <select name="myTable2_length" aria-controls="myTable2" class="form-control form-control-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                    entries
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div id="myTable2_filter" class="dataTables_filter" style="float: right;">
+                                                <label>
+                                                    Search:
+                                                </label>
+                                                <input id="txtFilter" onkeyup="BindOrder(1);" type="search" class="form-control form-control-sm mdi-format-float-left" placeholder="" aria-controls="myTable2" />
+                                                <!--<input type="button" class="btn btn-success" onclick="BindOrder(1);" value="Find" />-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="myShopOrderList" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="display:none;">#</th>
+                                                <th>Order-No</th>
+                                                <th>Order-Type</th>
+                                                <th>Drop-Request</th>
+                                                <th>Customer-Name</th>
+                                                <th>Mobile-No.</th>
+                                                <th>Order-Date</th>
+                                                <th>Delivery-Date</th>
+                                                <th>Amount</th>
+                                                <!-- <th>Payment-Mode</th>-->
+                                                <th>Payment</th>
+                                                <th>Status</th>
+                                                <th style="width: 88px;">Invoice</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listMyShopOrder">
+                                        </tbody>
+                                    </table>
+                                    <div class="dataTables_info" id="myShopOrderList_info" role="status" aria-live="polite">
+                                        Showing 1 to 10 of <span id="spnTotalCount"></span> entrieszo
+                                    </div>
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination" id="divPaging">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+
+    <style type="text/css">
+        .btnAdd {
+            border-radius: 5px;
+            margin-right: 10px;
+            padding: 5px 7px 4px 6px;
+            font-weight: bold;
+            margin-left: 12px;
+            border: 1px solid;
+        }
+
+        .delete {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+
+
+
+        function bgLoad() {
+            BindOrder(1);
+            //CompanyProfile();
+        }
+
+        function BindOrder(pageno) {
+            //alert(id);
+            $('#listMyShopOrder').html('<td colspan="6" style="text-align: center;"><span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span></td>');
+            var id = $('#hd_Userid').val();
+            var url = "apiService.asmx/GetShopOrderHistoryList";
+            var data = "{id:'" + id + "',pageno:'" + pageno + "',filter:'" + $('#txtFilter').val() + "'}";
+            var ctr = 0;
+            var pageList = '';
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    _details = data.d;
+                    var _htmlTable = "";
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            ctr++;
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td style="display:none;">' + ctr + '</td>';
+                            _htmlTable += '<td>' + object.orderId + '</td>';
+                            _htmlTable += '<td>' + object.orderType + '</td>';
+                            _htmlTable += '<td>' + object.dropRequest + '</td>';
+                            _htmlTable += '<td>' + object.name + '</td>';
+                            _htmlTable += '<td>' + object.mobile + '</td>';
+                            _htmlTable += ' <td>' + object.orderDate + '</td>';
+                            _htmlTable += ' <td>' + object.deliveryDate + '</td>';
+                            _htmlTable += ' <td>' + Number(object.ttlPayableAmount).toFixed(2) + '</td>';
+                            //_htmlTable += ' <td>' + object.paymentMode + '</td>';
+                            _htmlTable += ' <td>' + object.status + '</td>';
+                            _htmlTable += '<td>' + object.deliveryStatus + '</td>';
+                            _htmlTable += '<td>';
+                            _htmlTable += '<a class="btnInvo" target="_blank" class="btnInv" style="text-align: center;" href="invoice.html?oid=' + object.orderId
+                                + '"><i class="fa fa-print" style="color: black;  font-size: 20px;"></i></a>';
+                            _htmlTable += '</td></tr>';
+                            pageList = object.paging;
+                        });
+                    }
+                    $('#listMyShopOrder').html(_htmlTable);
+                    $('#divPaging').html(pageList);
+                    //$('#myShopOrderList').DataTable();
+
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+
+        function SetValOrder(id) {
+            $('#hdd_Order_unpaid').val(id);
+        }
+
+
+        function BindOrderItem(id) {
+            //alert(id);
+            $('#listMyOrder1').html('<td colspan="6" style="text-align: center;"><span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span></td>');
+            var totalAmt = 0;
+            var url = "https://api.kwickwash.com/api/placeorder/" + id;
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = "";
+                    _htmlTable += '<tr class="heading">';
+                    _htmlTable += '<td>Description</td>';
+                    _htmlTable += '<td>Count</td>';
+                    _htmlTable += '<td>Unit-Price</td>';
+                    _htmlTable += '<td>Qty</td>';
+                    _htmlTable += '<td>Unit</td>';
+                    _htmlTable += '<td>Total Price</td>';
+                    _htmlTable += '</tr>';
+                    var orderid = 0;
+                    var userid = 0;
+                    var suserid = 0;
+                    if (typeof (_details) !== 'undefined') {
+
+                        $.each(_details, function (i, object) {
+
+                            _htmlTable += '<tr class="item">';
+                            _htmlTable += '<td>' + object.productName + ' - <span>' + object.serviceName + '</span> </td>';
+                            _htmlTable += '<td>' + object.totalQty + ' - Pcs</td>';
+
+                            if (object.sUserid == "2197") {  //"2197"
+
+                                var loUnitPrice = (object.price) / 1.18;
+
+                                var loTotalPrice = loUnitPrice * parseFloat(object.orderQty);
+
+                                _htmlTable += '<td>' + Number(loUnitPrice).toFixed(2) + '</td>';
+                                _htmlTable += ' <td>' + Number(object.orderQty).toFixed(2) + '</td>';
+                                _htmlTable += '<td>' + object.unit + '</td>';
+                                _htmlTable += ' <td style="text-align:right;">' + Number(loTotalPrice).toFixed(2) + '</td>';
+                                totalAmt += loTotalPrice;
+                            }
+                            else {
+                                var ttlAmt = (object.price) * (object.orderQty);
+                                _htmlTable += '<td>' + Number(object.price).toFixed(2) + '</td>';
+                                _htmlTable += ' <td>' + Number(object.orderQty).toFixed(2) + '</td>';
+                                _htmlTable += '<td>' + object.unit + '</td>';
+                                _htmlTable += ' <td style="text-align:right;">' + Number(ttlAmt).toFixed(2) + '</td>';
+                                totalAmt += ttlAmt;
+                            }
+                            _htmlTable += '</tr>';
+
+                            orderid = object.orderId;
+                            userid = object.cUserid;
+                            suserid = object.sUserid;
+                        });
+
+
+                        GetOrderdt(orderid, suserid);
+                        GetCustomer(userid);
+                        GetShop(suserid);
+                    }
+
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Total Amount</b></td>';
+                    if (suserid == "2197") {  //"2197"
+                        _htmlTable += '<td><b><span id="txtTotalGSTAmt">' + Number(totalAmt).toFixed(2) + '</spn></b></td>';
+                    }
+                    else {
+                        _htmlTable += '<td><b><span id="txtTotalAmt"></span></b></td>';
+                    }
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Discount</b></td>';
+                    _htmlTable += '<td><b><span id="txtDiscount"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>CGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtCGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>SGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtSGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>IGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtIGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>After Discount Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtAfterAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+
+                    //** addon start product codeing here
+
+                    _htmlTable += '<tr class="heading">';
+                    _htmlTable += '<td colspan="3">Addon Name</td>';
+                    _htmlTable += '<td>Quantity</td>';
+                    _htmlTable += '<td>Price</td>';
+                    _htmlTable += '<td>Total Price</td>';
+                    _htmlTable += '</tr>';
+
+                    _htmlTable += '<tr>';
+                    _htmlTable += '<td colspan="3"><span id="txtAddProduct">0.00</span></td>';
+                    _htmlTable += '<td><span id="txtAddQty">0.00</span></td>';
+                    _htmlTable += '<td><span id="txtAddPrice">0.00</span></td>';
+                    _htmlTable += '<td style="text-align:right;"><span id="txtAddonPrice">0.00</span></td>';
+                    _htmlTable += '</tr>';
+
+                    //** addon end
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Total Payable Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtPayableAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    $('#listMyOrder1').html(_htmlTable);
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function round(value, decimals) {
+            return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+        }
+
+        function GetOrderdt(id, foShopUsertid) {
+            var url = "https://api.kwickwash.com/api/orderlist/GetData?orderId=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+
+                    if (typeof (_details) !== 'undefined') {
+
+                        $.each(_details, function (i, object) {
+                            $('#txtInvoiceNo').html(object.orderId);
+                            $('#txtOrderDate').html(object.orderDate);
+                            $('#txtDeliveryDate').html(object.deliveryDate);
+
+                            $('#txtOrderType').html(object.orderType);
+                            $('#txtPickupSlip').html(object.pickupSlip);
+                            $('#txtPickupRequest').html(object.pickupRequest);
+                            $('#txtDropRequest').html(object.dropRequest);
+                            if (object.status == 'unpaid') {
+                                //$('#linkInv').html('<a class="btnInv" onclick="callPayment(' + object.orderId + ');">Generate Invoice</a>');
+                                //$('#payStatus').show();
+                                //$('#deliveryStatus').hide();
+                            }
+                            else {
+
+                                $('#linkInv').html('<a target="_blank" class="btnInv" style="text-align: center;" href="invoice.html?oid=' + id + '">View Invoice</a>');
+                            }
+
+                            var loPayableAmount = 0;
+                            var loTotalAmt = 0;
+                            if (foShopUsertid == "2197") { //"2197"
+
+                                $('#txtTotalAmt').html(Number(object.amount).toFixed(2));
+                                $('#txtDiscount').html(Number(object.discountamount).toFixed(2));
+                                $('#txtAfterAmt').html(Number(object.subtotal).toFixed(2));
+
+                                var loGST = object.gst / 2;
+                                $("#txtCGSTAmt").html(Number(loGST).toFixed(2));
+                                $('#txtSGSTAmt').html(Number(loGST).toFixed(2));
+
+                            }
+                            else {
+                                $('#txtTotalAmt').html(Number(object.ttlAmount).toFixed(2));
+                                $('#txtDiscount').html(Number(object.ttlDiscount).toFixed(2));
+                                $('#txtAfterAmt').html(Number(object.ttlPayableAmount).toFixed(2));
+                            }
+
+                            $('#txtAddProduct').html(object.addonName);
+                            $('#txtAddQty').html(object.addonQty);
+                            $('#txtAddPrice').html(Number(object.addonPrice).toFixed(2));
+                            $('#txtAddonPrice').html(Number(object.addonTotalPrice).toFixed(2));
+
+                            if (foShopUsertid == "2197") {
+                                var addonPrice = object.addonTotalPrice;
+                                var totalPayableAmt = Number(object.patableamount) + Number(addonPrice);
+                                $('#txtPayableAmt').html(Number(totalPayableAmt).toFixed(2));
+                            }
+                            else {
+                                var addonPrice = object.addonTotalPrice;
+                                var totalPayableAmt = Number($('#txtAfterAmt').text()) + Number(addonPrice);
+                                $('#txtPayableAmt').html(Number(totalPayableAmt).toFixed(2));
+                            }
+
+
+                            /// Some Changes 23 Oct 2021 End
+
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetCustomer(id) {
+            var url = "https://api.kwickwash.com/api/profile/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#txtName').html(object.name);
+                            $('#txtAddress').html(object.address + ", <br/>" + object.state + ", " + object.city + "-" + object.pincode);
+                            $('#txtMobile').html(object.mobile);
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetShop(id) {
+            var url = "https://api.kwickwash.com/api/CompanyProfile/GetCompanyData?id=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+
+                            $('#txtShopAddress').html(object.communicationAddress + ", <br/>" + object.communicationState + ", " + object.communicationCity
+                                + "-" + object.communicationPincode + "<br> Mail :" + object.companyEmail + "<br/> Call :" + object.companyMobile);
+
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function callDelivery(id) {
+            var deliveryStatus = $('#dddeliveryStatus').val();
+            var data = "{id:'" + id + "',deliveryStatus:'" + deliveryStatus + "'}";
+            var url = "apiService.asmx/SetDeliveryStatus";
+
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data, XMLHttpRequest) {
+                    BindOrder(1);
+                    $('#payStatus').hide();
+                    $('#deliveryStatus').show();
+                    window.open("invoice.html?oid=" + id, '_blank');
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+
+        function callPayment(id) {
+            $('#linkInv').html('<a target="_blank" class="btnInv" style="text-align: center;" href="invoice.html?oid=' + id + '">View Invoice</a>');
+        }
+
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+
+
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" src="assets/js/ajaxupload.js"></script>
+
+    <style type="text/css">
+        .btnSuccess {
+            background-color: lightgreen;
+            padding: 3px;
+            color: darkgreen;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btnPending {
+            background-color: lightcoral;
+            padding: 3px;
+            color: white;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btnPay {
+            background: darkred;
+            padding: 3px;
+            color: white;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btnInvo {
+            background-color: transparent;
+            padding: 3px;
+            color: white;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btnRevOrder {
+            background-color: #6ab215;
+            padding: 3px;
+            color: white;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+
+
+
+
+        /*.invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }*/
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+        }
+
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+                padding: 5px;
+            }
+
+            .invoice-box table tr.top table td {
+                padding: 5px;
+            }
+
+                .invoice-box table tr.top table td.title {
+                    font-size: 45px;
+                    color: #333;
+                    padding: 5px;
+                }
+
+            .invoice-box table tr.information table td {
+                padding: 5px;
+            }
+
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+
+            .invoice-box table tr.details td {
+            }
+
+            .invoice-box table tr.item td {
+                border-bottom: 1px solid #eee;
+            }
+
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+
+        .btnInv {
+            background-color: darkorange;
+            color: white;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <div id="orderBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-rupee-sign" style="color:white;"></i> Payment</h3>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader"></div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12 float-lg-right">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+                                            <div class="white-box">
+                                                <div class="invoice-box">
+                                                    <table cellpadding="0" cellspacing="0" style="font-size:13px;">
+                                                        <tr class="top">
+                                                            <td colspan="2">
+                                                                <table>
+                                                                    <tr>
+                                                                        <td class="title" valign="top">
+                                                                            <!--<img src="assets/img/logo.png" style="width:90%; max-width:200px;">-->
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">www.kwickwash.in</a><br />
+                                                                            <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">contactus@kwickwash.in</a>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="font-size:12px;">
+                                                                            <!--<b>Shop Address </b><br />-->
+                                                                            <div id="txtShopAddress" style="width:300px;"></div><br />
+
+                                                                        </td>
+                                                                        <td style="text-align: left;">
+                                                                            Order No : <b><span id="txtInvoiceNo"></span></b><br>
+                                                                            Order Date: <b><span id="txtOrderDate"></span></b><br>
+                                                                            Delivery Date : <b><span id="txtDeliveryDate"></span></b>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="font-size:12px;">
+                                                                            <b>Customer Details </b><br />
+                                                                            Name : <span id="txtName"></span><br>
+                                                                            Address : <span id="txtAddress"></span><br>
+                                                                            Mobile :<span id="txtMobile"></span>
+                                                                        </td>
+                                                                        <td style="text-align: left;">
+                                                                            Order Type : <b><span id="txtOrderType"></span></b> <br />
+                                                                            Pickup Slip : <b><span id="txtPickupSlip"></span></b><br />
+                                                                            Pickup Request : <span id="txtPickupRequest"></span><br />
+                                                                            Drop Request : <span id="txtDropRequest"></span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                    <table style="font-size:13px;">
+                                                        <tbody id="listMyOrder1">
+                                                        </tbody>
+                                                    </table>
+                                                    <hr />
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="form-group" id="payStatus">
+                                                                <label class="control-label">Payment Type</label>
+                                                                <select id="ddPaymentMode" class="form-control">
+                                                                    <option value="0">---Select Payment Type ---</option>
+                                                                    <option value="Cash">Cash</option>
+                                                                    <option value="Google Pay">Google Pay</option>
+                                                                    <option value="PhonePe">PhonePe</option>
+                                                                    <option value="Paytm">Paytm</option>
+                                                                    <option value="UPI">UPI</option>
+                                                                    <option value="NEFT">NEFT</option>
+                                                                    <option value="Debit Card">Debit Card</option>
+                                                                    <option value="Credit Card">Credit Card</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4" id="deliveryStatus" style="display:none;">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Delivery Status</label>
+                                                                <select id="dddeliveryStatus" class="form-control">
+                                                                    <option value="0">---Select Delivery Status  ---</option>
+                                                                    <option value="Pending">Pending</option>
+                                                                    <option value="Process">Process</option>
+                                                                    <option value="Delivered">Delivered</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12" id="linkInv">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="payBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-rupee-sign" style="color:white;"></i> Payment & Delivery</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader"></div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="hdd_Order_unpaid" value="0" />
+                        <div class="col-lg-10">
+                            <div class="form-group" id="payStatus">
+                                <label class="control-label">Payment Type</label>
+                                <select id="ddPaymentMode" class="form-control">
+                                    <option value="0">---Select Payment Type ---</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Google Pay">Google Pay</option>
+                                    <option value="PhonePe">PhonePe</option>
+                                    <option value="Paytm">Paytm</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="NEFT">NEFT</option>
+                                    <option value="Debit Card">Debit Card</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-10" id="deliveryStatus" style="display:none;">
+                            <div class="form-group">
+                                <label class="control-label">Delivery Status</label>
+                                <select id="dddeliveryStatus" class="form-control">
+                                    <option value="0">---Select Delivery Status  ---</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Process">Process</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" style=" text-align: center;">
+                            <a class="btnInv" onclick="callPayment(0);" style="background-color: darkorange; color: white; padding: 10px; font-size: 14px; cursor: pointer;" href="#">Payment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deliveryBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-bus" style="color:white;"></i>&nbsp;&nbsp;Delivery Schedule</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader"></div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-lg-10">
+                            <div class="form-group" id="payStatus">
+                                <label class="control-label">Delivery Date</label>
+                                <input type="datetime-local" id="txtDeliveryDate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group">
+                                <label class="control-label">Driver</label>
+                                <select id="ddDriver" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12" style=" text-align: center;">
+                            <a class="btnInv" style="background-color: darkorange; color: white; padding: 10px; font-size: 14px; cursor: pointer;" href="#">Set Reverse Delivery</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

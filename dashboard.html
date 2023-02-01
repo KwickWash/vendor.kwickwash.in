@@ -1,0 +1,624 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classDashboard {
+            background-color: #6ab215;
+        }
+
+        .row-in-br {
+            border-right: 1px solid rgba(120, 130, 140, 0.13);
+            background: white;
+            margin: 5px;
+            border-radius: 3px;
+            box-shadow: 0px 1px 1px 0px #ccc;
+        }
+
+        .white-box {
+            padding: 0px !important;
+        }
+
+        .row {
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+        }
+
+        .col-in h3 {
+            background: #f74d4d;
+            color: white;
+            font-size: 11px;
+            border-radius: 2px;
+            position: absolute;
+            top: -22px;
+            right: -7px;
+            width: auto;
+            text-align: center;
+            height: 30px;
+            min-width: 25px;
+        }
+
+        .col-in li.col-middle {
+            width: 65% !important;
+        }
+
+        .circle-md {
+            width: 40px;
+            padding-top: 3px;
+            height: 40px;
+            font-size: 24px !important;
+        }
+
+        .row-in i {
+            font-size: 21px;
+        }
+
+        h4 {
+            line-height: 22px;
+            font-size: 13px;
+        }
+
+        @media (min-width: 1200px) {
+            .col-lg-3 {
+                width: 24%;
+                padding: 13px
+            }
+
+            .col-lg-2 {
+                width: 19%;
+                padding: 5px;
+            }
+        }
+
+        .userIcon {
+            color: darkblue !important;
+            background-color: white !important;
+        }
+
+        .row-in i {
+            font-size: 28px !important;
+            padding: 11px !important;
+            color: #6ab215;
+        }
+
+        .row-in-br {
+            background: white !important;
+            margin: 11px !important;
+            box-shadow: 0 1px 6px 0 #000 !important;
+            border-radius: 4px;
+        }
+
+        h2 {
+            font-size: 14px !important;
+            margin-left: 11px;
+            font-weight: 500;
+        }
+
+        .col-in li {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0px !important;
+        }
+
+        h4 {
+            color: #6ab215;
+            font-weight: 400;
+        }
+
+        .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        /* Add some padding inside the card container */
+        .container {
+            padding: 2px 16px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px; /* 5px rounded corners */
+            background: black;
+        }
+
+        /* Add rounded corners to the top left and the top right corner of the image */
+        img {
+            border-radius: 5px 5px 0 0;
+        }
+
+        b {
+            font-size: 20px;
+            color: white;
+            font-family: system-ui;
+            padding: 4px;
+            border-radius: 2px;
+        }
+
+        .txth1 {
+            width: 200px;
+            background: white;
+            color: rebeccapurple;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: wheat;
+        }
+
+        .booked {
+            background-color: #0876e0 !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .delivered {
+            background-color: #6bb841 !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .paid {
+            background-color: #e89a0a !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .orderNo {
+            color: yellow !important;
+            font-style: italic !important;
+        }
+
+        .ReadyForDelivery {
+            background-color: violet !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .InProcess {
+            background-color: #dcb62d !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .UnPaid {
+            background: #c20b0b !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .AmountReceived {
+            background-color: darkgreen !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .AmountDue {
+            background-color: red !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .WalletBalace {
+            background-color: blueviolet !important;
+            color: white;
+            font-weight: 400;
+        }
+
+        .CancelOrder {
+            background-color: darkred !important;
+            color: white;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title" style="color:black;">Dashboard</h4>
+                    </div>
+
+                </div>
+
+                <!-- Different data widgets -->
+                <div class="row">
+                    <!-- <iframe src="KW-dashboard.html" width="100%" height="500px" style="border: none;"></iframe>-->
+                    <div class="col-sm-12">
+                        <div class="white-box" style="height: 100px;">
+                            <div class="col-lg-2">
+                                <label>From Date</label>
+                                <input type="date" id="txtFromDate" class="form-control" />
+                            </div>
+                            <div class="col-lg-2">
+                                <label>To Date</label>
+                                <input type="date" id="txtToDate" class="form-control" />
+                            </div>
+
+                            <div class="col-lg-3">
+                                <br>
+                                <a class="btn btn-info" href="#" onclick="ReadDashBoard();">Submit</a>
+                                <div id="loader" style="display:none;">
+                                    <span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="white-box" style="background-color:transparent !important;">
+
+                            <div class="row row-in">
+
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="card">
+                                        <div class="container">
+                                            <h1><b>Total Order</b></h1>
+                                            <h1 id="txtOrder">0</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="card">
+                                        <div class="container">
+                                            <h1><b>Total Order Amount</b></h1>
+                                            <h1 id="txtTotalAmount">0</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="PaymentReceivedLedger.html">
+                                    <div class="col-lg-2 col-sm-12">
+                                        <div class="card AmountReceived">
+                                            <div class="container">
+                                                <h1><b>Total Amount Received</b></h1>
+                                                <h1 id="txtAmountCollected">&#8377; 0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="card AmountDue">
+                                        <div class="container">
+                                            <h1><b>Total Amount Due</b></h1>
+                                            <h1 id="txtAmountDue">&#8377; 0</h1>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-sm-12">
+                                    <div class="card WalletBalace">
+                                        <div class="container">
+                                            <h1><b>Wallet Balance</b></h1>
+                                            <h1 id="txtWalletBalance">&#8377; 0</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-in">
+                                <a href="order-status.html?status=booked">
+                                    <div class="col-lg-2 col-sm-12">
+                                        <div class="card booked">
+                                            <div class="container">
+                                                <h1 style="font-size:25px;"><b>Booked</b></h1>
+                                                <h1 id="txtBooked">0</h1>
+                                                <h1 id="txtBookedAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="order-status.html?status=InProcess">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card InProcess">
+                                            <div class="container">
+                                                <h1><b>Processing</b></h1>
+                                                <h1 id="txtProcessing">0</h1>
+                                                <h1 id="txtProcessingAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="order-status.html?status=ReadyForDelivery">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card ReadyForDelivery">
+                                            <div class="container">
+                                                <h1><b>Ready For Delivery</b></h1>
+                                                <h1 id="txtReadyForDelivery">0</h1>
+                                                <h1 id="txtReadyForDeliveryAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="order-status.html?status=unpaid">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card UnPaid">
+                                            <div class="container">
+                                                <h1><b>Delivered Unpaid</b></h1>
+                                                <h1 id="txtDeliveredUnpaid">0</h1>
+                                                <h1 id="txtDeliveredUnpaidAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="order-status.html?status=Paid">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card delivered">
+                                            <div class="container">
+                                                <h1><b>Delivered Paid</b></h1>
+                                                <h1 id="txtDeliveredPaid">0</h1>
+                                                <h1 id="txtDeliveredPaidAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+
+                            <div class="row row-in">
+
+                                <a href="order-status.html?status=Cancel">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card CancelOrder">
+                                            <div class="container">
+                                                <h1><b>Cancel Orders</b></h1>
+                                                <h1 id="txtCancelOrder">0</h1>
+                                                <h1 id="txtCancelAmount">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="customer.html">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card">
+                                            <div class="container">
+                                                <h1><b>Customer</b></h1>
+                                                <h1 id="txtCustomer">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- <a href="driver.html">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card">
+                                            <div class="container">
+                                                <h1><b>Driver</b></h1>
+                                                <h1 id="txtDriver">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>-->
+                                <a href="vendor-shop.html">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card">
+                                            <div class="container">
+                                                <h1><b>Shop</b></h1>
+                                                <h1 id="txtShop">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- <a href="#">
+                                    <div class="col-lg-2 col-sm-12 ">
+                                        <div class="card">
+                                            <div class="container">
+                                                <h1><b>Comission</b></h1>
+                                                <h1 id="txtComission">0</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div id="ctrFooter"></div>
+            </div>
+            <!-- End Page Content -->
+        </div>
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <script src="assets/js/dashboard2.js"></script>
+
+
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        function bgLoad() {
+            var id = $('#hd_Userid').val();
+            ReadDashBoard();
+        }
+
+        function ReadDashBoard() {
+            var id = $('#hd_Userid').val();
+            var url = "https://api.kwickwash.com/api/dashboard/GetVendorShop?vid=" + id + "&fdate=" + $('#txtFromDate').val() + "&tdate=" + $('#txtToDate').val() + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        //alert(_details);
+                        object = _details;
+                        // $.each(_details, function (i, object) {
+                        //Shop
+                        //alert(Object.ttlCustomer);
+                        $('#txtCustomer').html(object.ttlCustomer);
+                        $('#txtUsers').html(object.ttlUser);
+                        $('#txtDriver').html(object.ttlDriver);
+                        $('#txtService').html(object.ttlService);
+                        $('#txtProduct').html(object.ttlProduct);
+
+                        $('#txtVendor').html(object.ttlVendor);
+                        $('#txtShop').html(object.ttlShop);
+                        $('#txtReferral').html(object.ttlReferral);
+                        $('#txtComission').html('0');
+
+                        //Order
+                        $('#txtOrder').html('# ' + object.ttlOrders);
+                        $('#txtTotalAmount').html('&#8377; ' + Math.round(object.ttlPayments));
+                        $('#txtAmountCollected').html("&#8377; " + Math.round(object.ttlPaymentsPending));
+                        $('#txtAmountDue').html('&#8377; ' + Math.round(object.ttlPaymentsCompleted));
+                        $('#txtWalletBalance').html('&#8377; ' + Math.round(object.walletBalance));
+
+                        $('#txtBooked').html('# ' + object.booked);
+                        $('#txtProcessing').html('# ' + object.inProcess);
+                        $('#txtReadyForDelivery').html('# ' + object.readyForDelivery);
+                        $('#txtDeliveredUnpaid').html('# ' + object.deliveredUnpaid);
+                        $('#txtDeliveredPaid').html('# ' + object.deliveredPaid);
+
+                        $('#txtBookedAmount').html('&#8377; ' + Math.round(object.bookedAmount));
+                        $('#txtProcessingAmount').html('&#8377; ' + Math.round(object.inProcessAmount));
+                        $('#txtReadyForDeliveryAmount').html('&#8377; ' + Math.round(object.readyForDeliveryAmount));
+                        $('#txtDeliveredUnpaidAmount').html('&#8377; ' + Math.round(object.deliveredUnpaidAmount));
+                        $('#txtDeliveredPaidAmount').html('&#8377; ' + Math.round(object.deliveredPaidAmount));
+
+                        $('#txtCancelOrder').html('&#8377; ' + Math.round(object.ttlTotalCancelOrder));
+                        $('#txtCancelAmount').html('&#8377; ' + Math.round(object.ttlTotalCancelOrderAmt));
+
+
+                        // });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetMonthYearReport() {
+            if ($('#ddMonth').val != 0 && $('#ddYear').val != 0) {
+                var id = $('#hd_Userid').val();
+                var month = $('#ddMonth').val();
+                var year = $('#ddYear').val();
+                $('.btn-info').hide();
+                $('#loader').show();
+                var url = "https://api.kwickwash.com/api/dashboard/GetMonthData?id=" + id + "&month=" + month + "&year=" + year;
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'GET',
+                    success: function (data) {
+
+                        $('#txtCustomer').html(data.totalCustomer);
+                        $('#txtUsers').html(0);
+                        $('#txtDriver').html(0);
+                        $('#txtService').html(0);
+                        $('#txtProduct').html(0);
+
+                        //Order
+                        $('#txtOrder').html(data.totalOrder);
+                        $('#txtOrderPending').html(data.totalPendingOrder);
+                        $('#txtOrderCompleted').html(data.totalCompletedOrder);
+
+
+                        //
+
+                        $('#txtPayments').html(data.totalRevenue);
+                        $('#txtPaymentsPending').html(data.totalCollection);
+                        $('#txtPaymentsCompleted').html(data.totalOutstanding);
+
+                        $('#txtDelivery').html(data.totalCompletedOrder);
+                        $('#txtDeliveryPending').html(data.totalPendingOrder);
+                        $('.btn-info').show();
+                        $('#loader').hide();
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                        $('.btn-info').show();
+                        $('#loader').hide();
+                    }
+                });
+            }
+            else {
+                ReadDashBoard();
+                $('.btn-info').show();
+                $('#loader').hide();
+            }
+        }
+
+    </script>
+
+</body>
+</html>

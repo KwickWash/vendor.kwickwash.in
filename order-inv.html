@@ -1,0 +1,562 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Details</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
+        }
+
+            body h1 {
+                font-weight: 300;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+                color: #000;
+            }
+
+            body h3 {
+                font-weight: 300;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-style: italic;
+                color: #555;
+            }
+
+            body a {
+                color: #06F;
+            }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-size: 16px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+
+                .invoice-box table td {
+                    padding: 5px;
+                    vertical-align: top;
+                }
+
+                .invoice-box table tr td:nth-child(2) {
+                    text-align: right;
+                     padding: 5px;
+                }
+
+                .invoice-box table tr.top table td {
+                     padding: 5px;
+                }
+
+                    .invoice-box table tr.top table td.title {
+                        font-size: 45px;
+                        color: #333;
+                         padding: 5px;
+                    }
+
+                .invoice-box table tr.information table td {
+                     padding: 5px;
+                }
+
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 1px solid #ddd;
+                    font-weight: bold;
+                }
+
+                .invoice-box table tr.details td {
+                }
+
+                .invoice-box table tr.item td {
+                    border-bottom: 1px solid #eee;
+                }
+
+                .invoice-box table tr.item.last td {
+                    border-bottom: none;
+                }
+
+                .invoice-box table tr.total td:nth-child(2) {
+                    border-top: 2px solid #eee;
+                    font-weight: bold;
+                }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var id = findGetParameter('oid');
+            if (id != null || id != "0") {                
+                BindOrderItem(id)
+            }
+        });
+
+        function BindOrderItem(id) {
+            //alert(id);
+            $('#listMyOrder').html('<td colspan="6" style="text-align: center;"><span><i class="fa fa-spinner fa-spin" style="color:#9FCB39; font-size:40px; text-align:center;"></i></span></td>');
+            var totalAmt = 0;
+            var url = "https://api.kwickwash.com/api/placeorder/" + id;
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = "";
+                    _htmlTable += '<tr class="heading">';
+                    _htmlTable += '<td>Description</td>';
+                    _htmlTable += '<td>Count</td>';
+                    _htmlTable += '<td>Unit-Price</td>';
+                    _htmlTable += '<td>Qty</td>';
+                    _htmlTable += '<td>Unit</td>';
+                    _htmlTable += '<td>Total Price</td>';
+                    _htmlTable += '</tr>';
+                    var orderid = 0;
+                    var userid = 0;
+                    var suserid = 0;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+
+                            _htmlTable += '<tr class="item">';
+                            _htmlTable += '<td>' + object.productName + ' - <span>' + object.serviceName + '</span> </td>';
+                            _htmlTable += '<td>' + object.totalQty + ' - Pcs</td>';                            
+                            
+                            if (object.sUserid == "2197") {  //"2197"
+                                                              
+                                var loUnitPrice = (object.price)/1.18;
+                                
+                                var loTotalPrice = loUnitPrice * parseFloat(object.orderQty);
+
+                                _htmlTable += '<td>' + Number(loUnitPrice).toFixed(2) + '</td>';
+                                _htmlTable += ' <td>' + Number(object.orderQty).toFixed(2) + '</td>';
+                                _htmlTable += '<td>' + object.unit + '</td>';
+                                _htmlTable += ' <td style="text-align:right;">' + Number(loTotalPrice).toFixed(2) + '</td>';
+                                totalAmt += loTotalPrice;
+                            }
+                            else {
+                                var ttlAmt = (object.price) * (object.orderQty);
+                                _htmlTable += '<td>' + Number(object.price).toFixed(2) + '</td>';
+                                _htmlTable += ' <td>' + Number(object.orderQty).toFixed(2) + '</td>';
+                                _htmlTable += '<td>' + object.unit + '</td>';                               
+                                _htmlTable += ' <td style="text-align:right;">' + Number(ttlAmt).toFixed(2) + '</td>';
+                                totalAmt += ttlAmt;
+                            }
+                            _htmlTable += '</tr>';
+                            
+                            orderid = object.orderId;
+                            userid = object.cUserid;
+                            suserid = object.sUserid;
+                        });
+                        GetOrderdt(orderid, suserid);
+                        GetCustomer(userid);
+                        GetShop(suserid);
+                        BalanceDetail(orderid, userid);
+                    }
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Total Amount</b></td>';
+                    if (suserid == "2197") {  //"2197"
+                        _htmlTable += '<td><b><span id="txtTotalGSTAmt">' + Number(totalAmt).toFixed(2)  + '</spn></b></td>';
+                    }
+                    else {
+                        _htmlTable += '<td><b><span id="txtTotalAmt"></span></b></td>';
+                    }                   
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Discount</b></td>';
+                    _htmlTable += '<td><b><span id="txtDiscount"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>After Discount Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtAfterAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>CGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtCGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>SGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtSGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>IGST</b></td>';
+                    _htmlTable += '<td><b><span id="txtIGSTAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+
+                  
+
+                    //** addon start product codeing here
+
+                    _htmlTable += '<tr class="heading" id="AddOnHeader">';
+                    _htmlTable += '<td colspan="3">Addon Name</td>';
+                    _htmlTable += '<td>Quantity</td>';
+                    _htmlTable += '<td>Price</td>';
+                    _htmlTable += '<td>Total Price</td>';
+                    _htmlTable += '</tr>';
+
+                    _htmlTable += '<tr id="AddOnItem">';
+                    _htmlTable += '<td colspan="3"><span id="txtAddProduct">0.00</span></td>';
+                    _htmlTable += '<td><span id="txtAddQty">0.00</span></td>';
+                    _htmlTable += '<td><span id="txtAddPrice">0.00</span></td>';
+                    _htmlTable += '<td style="text-align:right;"><span id="txtAddonPrice">0.00</span></td>';
+                    _htmlTable += '</tr>';
+
+                    //** addon end
+                    _htmlTable += '<tr class="total">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Sub Total Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtPayableAmtWithRoundof"></span></b></td>';
+                    _htmlTable += '</tr>';
+
+                    _htmlTable += '<tr class="total" id="AddFooter">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Round off Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtRoundAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+
+                    _htmlTable += '<tr class="total" id="AddFooter">';
+                    _htmlTable += '<td colspan="5" style="text-align:right;"><b>Total Payable Amount</b></td>';
+                    _htmlTable += '<td><b><span id="txtPayableAmt"></span></b></td>';
+                    _htmlTable += '</tr>';
+                    $('#listMyOrder').html(_htmlTable);
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function round(value, decimals) {
+            return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+        }
+
+        function GetOrderdt(id,foShopUsertid) {
+            var url = "https://api.kwickwash.com/api/orderlist/GetData?orderId=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;
+                  
+                    if (typeof (_details) !== 'undefined') {                      
+                        $.each(_details, function (i, object) {                            
+                            $('#txtInvoiceNo').html(object.orderId);
+                            $('#txtOrderDate').html(object.orderDate);
+                            $('#txtDeliveryDate').html(object.deliveryDate);
+
+                            $('#txtOrderType').html(object.orderType);
+                            $('#txtPickupSlip').html(object.pickupSlip);
+                            $('#txtPickupRequest').html(object.pickupRequest);
+                            $('#txtDropRequest').html(object.dropRequest);
+
+                            
+                            var loPayableAmount = 0;
+                            var loTotalAmt = 0;
+                            if (foShopUsertid == "2197") { //"2197"
+                                
+                                $('#txtTotalAmt').html(Number(object.amount).toFixed(2));
+                                $('#txtDiscount').html(Number(object.discountamount).toFixed(2));
+                                $('#txtAfterAmt').html(Number(object.subtotal).toFixed(2));
+
+                                var loGST = object.gst / 2;
+                                $("#txtCGSTAmt").html(Number(loGST).toFixed(2));
+                                $('#txtSGSTAmt').html(Number(loGST).toFixed(2));
+
+                            }
+                            else {
+                                $('#txtTotalAmt').html(Number(object.ttlAmount).toFixed(2));
+                                $('#txtDiscount').html(Number(object.ttlDiscount).toFixed(2));
+                                $('#txtAfterAmt').html(Number(object.ttlPayableAmount).toFixed(2));
+                            }
+                            if (object.addonPrice != 0) {
+                                $('#AddOnHeader').show();
+                                $('#AddOnItem').show();
+                                $('#AddFooter').show();
+                                $('#txtAddProduct').html(object.addonName);
+                                $('#txtAddQty').html(object.addonQty);
+                                $('#txtAddPrice').html(Number(object.addonPrice).toFixed(2));
+                                $('#txtAddonPrice').html(Number(object.addonTotalPrice).toFixed(2));
+                            }
+                            else {
+                                $('#AddOnHeader').hide();
+                                $('#AddOnItem').hide();
+                                $('#AddFooter').show();
+                            }
+                            if (foShopUsertid == "2197") {
+                                var addonPrice = object.addonTotalPrice;
+                                var totalPayableAmt = Number(object.patableamount) + Number(addonPrice);
+                                $('#txtPayableAmtWithRoundof').html(Number(totalPayableAmt).toFixed(2));
+                                if (Math.round(Number(totalPayableAmt)).toFixed(2) > Number(totalPayableAmt).toFixed(2))
+                                    $('#txtRoundAmt').html('( + )  ' + Number(Number(Math.round(Number(totalPayableAmt)).toFixed(2)).toFixed(2) - totalPayableAmt).toFixed(2));
+                                else
+                                    $('#txtRoundAmt').html('( - )  ' + Number(Number(totalPayableAmt).toFixed(2) - Math.round(Number(totalPayableAmt)).toFixed(2)).toFixed(2));
+                                $('#txtPayableAmt').html(Math.round(Number(totalPayableAmt)).toFixed(2));
+                            }
+                            else {
+                                var addonPrice = object.addonTotalPrice;
+                                var totalPayableAmt = Number($('#txtAfterAmt').text()) + Number(addonPrice);
+                                $('#txtPayableAmtWithRoundof').html(Number(totalPayableAmt).toFixed(2));
+                                if (Math.round(Number(totalPayableAmt)).toFixed(2) > Number(totalPayableAmt).toFixed(2))
+                                    $('#txtRoundAmt').html('( + )  ' + Number(Number(Math.round(Number(totalPayableAmt)).toFixed(2)).toFixed(2) -totalPayableAmt).toFixed(2));
+                                else
+                                    $('#txtRoundAmt').html('( - )  ' + Number(Number(totalPayableAmt).toFixed(2) - Math.round(Number(totalPayableAmt)).toFixed(2)).toFixed(2));
+                                
+                                $('#txtPayableAmt').html(Math.round(Number(totalPayableAmt)).toFixed(2));
+                            }
+                           
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetCustomer(id) {
+            var url = "https://api.kwickwash.com/api/profile/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;                  
+                    if (typeof (_details) !== 'undefined') {                      
+                        $.each(_details, function (i, object) {                            
+                            $('#txtName').html(object.name);
+                            $('#txtAddress').html(object.address + ", <br/>, " + object.city + ", " + object.state + "-" + object.pincode);
+                            $('#txtMobile').html(object.mobile);
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function GetShop(id) {
+            var url = "https://api.kwickwash.com/api/CompanyProfile/GetCompanyData?id=" + id + "&status=1";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data, XMLHttpRequest) {
+                    _details = data;                  
+                    if (typeof (_details) !== 'undefined') {                      
+                        $.each(_details, function (i, object) {                            
+                           
+                            $('#txtShopAddress').html("<b>" + object.companyName + "</b><br/>" + object.communicationAddress + ", <br/>" + object.communicationState + ", " + object.communicationCity
+                                + "-" + object.communicationPincode + "<br> Mail :" + object.companyEmail + "<br/> Call :" + object.companyMobile + "<br/>");
+                           
+                            if (id == "2197") {
+                                $('#txtShopAddress').append("<b>GST NO : " + object.companyGSTno + "</b>");
+                            }
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+
+        function BalanceDetail(OrderId, CustomerId) {
+            var PreviousBalanceAmount = 0.0;
+            var CurrentOrderAmount = 0.0;
+            var AdvanceAmount = 0.0;
+            var url = "apiService.asmx/GetBalanceDetails";
+            var data = "{OrderId:'" + OrderId + "',CustomerId:'" + CustomerId + "'}";
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                    obj = data.d[0];                   
+                    PreviousBalanceAmount =parseFloat(obj.PreviousBalanceAmount).toFixed();
+                    console.log("PreviousBalanceAmount :" + PreviousBalanceAmount);
+                    var PreviousAmount = PreviousBalanceAmount.replace("-", "");
+                    console.log("PreviousAmount :" + PreviousAmount);
+                    PreviousBalanceAmount = Math.round(PreviousAmount);
+
+                  
+                    CurrentOrderAmount = Math.round(obj.CurrentOrderAmount).toFixed(2);
+                    console.log("CurrentOrderAmount :" + CurrentOrderAmount);
+                    AdvanceAmount = Math.round(obj.AdvanceAmount).toFixed(2);
+                    console.log("AdvanceAmount :" + AdvanceAmount);
+                    var TotalAmt = Math.round(parseFloat(obj.PreviousBalanceAmount) + parseFloat(-CurrentOrderAmount)).toFixed(2);
+                    console.log("TotalAmt :" + TotalAmt);
+                    var Balance = Math.round(AdvanceAmount - (-TotalAmt)).toFixed(2);
+                    console.log("Balance :" + Balance);
+                    var htmltd;
+                    if (PreviousBalanceAmount > 0) {
+                        $('#spPreviousAmount').text('Previous Wallet Amt');
+                    }
+                    else {
+                        $('#spPreviousAmount').text('Previous Due');
+                    }
+                    htmltd += "<td style='text-align: center;'>" + PreviousBalanceAmount + "</td>";
+                    htmltd += "<td style='text-align: center;'>" + CurrentOrderAmount.replace("-", "") + "</td>";
+                    htmltd += "<td style='text-align: center;'>" + TotalAmt.replace("-", "") + "</td>";
+                    htmltd += "<td style='text-align: center;'>" + AdvanceAmount.replace("-", "") + "</td>";
+                    if (Balance == 0) {
+
+                    }
+                    else {
+                        htmltd += "<td style='text-align: center;'>" + Balance.replace("-", "") + "</td>";
+                    }
+                    if (Balance > 0) {
+                        $('#spPending').text('Wallet Amt');
+                    }
+                    else if (Balance < 0) {
+                        $('#spPending').text('Amt Due');
+                    }
+                    else if (Balance == 0) {
+                        $('#duefield').hide();
+                    }
+
+                    if (TotalAmt > 0) {
+                        $("#spPayable").text("Total Amt");
+                    }
+                    else {
+                        $("#spPayable").text("Total Payable Amt");
+                    }
+
+                    $('#trBalanceDetail').html(htmltd);
+                },
+                error: function (XMLHttpRequest, errorThrown) {
+
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+  
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0" style="font-size:13px;">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title" valign="top">
+                                <img src="assets/img/logo.png" style="width:90%; max-width:200px;">
+                            </td>
+                            <td>
+                                <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">www.kwickwash.in</a><br />
+                                <a href="#" style="font-size: 12px; color: darkblue; text-decoration: none;">contactus@kwickwash.in</a>
+                            </td>
+                        </tr>
+                      
+                        <tr>
+                            <td style="font-size:12px;">
+                                <!--<b>Shop Address </b><br />-->
+                                <div id="txtShopAddress" style="width:300px;"></div><br />
+                                
+                            </td>
+                            <td style="text-align: left;">
+                                Order No : <b><span id="txtInvoiceNo"></span></b><br>
+                                Order Date: <b><span id="txtOrderDate"></span></b><br>
+                                Delivery Date : <b><span id="txtDeliveryDate"></span></b>                               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:12px;">
+                                <b>Customer Details </b><br />
+                                Name : <span id="txtName"></span><br>
+                                Address : <span id="txtAddress"></span><br>
+                                Mobile :<span id="txtMobile"></span>
+                            </td>
+                            <td style="text-align: left;">
+                                Order Type : <b><span id="txtOrderType"></span></b> <br />
+                                Pickup Slip : <b><span id="txtPickupSlip"></span></b><br />
+                                Pickup Request : <span id="txtPickupRequest"></span><br />
+                                Drop Request : <span id="txtDropRequest"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+           
+        </table>
+        <table style="font-size:13px;">
+          <tbody id="listMyOrder">
+
+          </tbody>
+           
+          
+        </table>
+        <hr />
+        <table style="font-size:13px;">
+            <tbody>
+                <tr class="heading">
+                    <td style="text-align:center;"><span id="spPreviousAmount"></span></td>
+                    <td style="text-align:center;">Order Amt</td>
+                    <td style="text-align:center;"><span id="spPayable"></span></td>
+                    <td style="text-align:center;">Paid</td>
+                    <td style="text-align:center;" id="duefield"><span id="spPending"></span></td>
+                </tr>
+                <tr id="trBalanceDetail" class="item">
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <p style="text-align:left;">
+            <h2 style="text-align:left; font-size:14px;">Terms & Condition : www.kwickwash.in/tco.html</h2>           
+        </p>
+
+        <p style="background-color:black; font-size:12px; color:white; padding:7px;">
+            <b>Regd. Address </b>JOSHUA KWICKWASH (OPC) PRIVATE LIMITED<br />
+            A15/402, Bramha Avenue, NIBM Road, Near Jyoti Hotel, Kondhwa Khurd, PUNE, Maharashtra, India - 411048
+        </p>
+    </div>
+    
+</body>
+</html>

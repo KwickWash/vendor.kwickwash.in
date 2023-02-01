@@ -1,0 +1,495 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classBanner {
+            background-color: darkmagenta;
+        }
+
+        .loader {
+            background: orangered;
+            text-align: center;
+            width: 1093px;
+            padding: 25%;
+            border: 1px solid orangered;
+            opacity: 0.5;
+            position: absolute;
+            z-index: 999;
+            margin-left: 2px;
+            border-radius: 4px;
+            margin-top: -40px;
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">City</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a href="#cityBox" onclick="inputClear();" class="btn btn-primary" data-toggle="modal" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="fa fa-user"> </i> Add City
+                        </a>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+
+                        <!-- </div> -->
+                        <!-- /.row -->
+                        <!-- ============================================================== -->
+                        <!-- /row -->
+                        <!-- <div class="row"> -->
+                        <div class="col-sm-12">
+                            <div class="white-box">
+                                <h3 class="box-title m-b-0">All City list</h3>
+                                <p class="text-muted m-b-30 font-13">You can see all details of city List</p>
+                                <div class="table-responsive" style="overflow: auto;">
+                                    <table id="myTable2" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th>City-Name</th>
+                                                <th>Status</th>
+                                                <th>Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listCity">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style> <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+        $(document).ready(function () {
+
+            BindCity();
+           
+        });
+
+         function BindCity() {
+            //alert(id);
+            $('#listCity').html('<td colspan="6" style="text-align: center;"><span><i class="fa fa-spinner fa-spin" style="color:darkslateblue; font-size:40px; text-align:center;"></i></span></td>');
+
+            var url = "https://api.kwickwash.com/api/city";
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = "";
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            _htmlTable += '<tr>';
+                            var ctr = 1 + i;
+                            _htmlTable += '<td>' + ctr + '</td>';
+                            _htmlTable += '<td>' + object.cityName + '</td>';
+                            if (object.status == '1' || object.status == 'True') {
+                                _htmlTable += '<td><label class="badge badge-teal">Active</label></td>';
+                            }
+                            else {
+                                _htmlTable += '<td><label class="badge badge-danger">Deactive</label></td>';
+                            }
+                            _htmlTable += '<td class="text-center">';
+                            _htmlTable += '<div class="dropdown">';
+                            _htmlTable += '<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Manage<span class="caret"></span></button>';
+                            _htmlTable += '<ul class="dropdown-menu">';
+                            _htmlTable += '<li><a title="Verified" onclick="SetValid(' + object.cityId + ');">Activate</a></li>';
+                            _htmlTable += '<li><a title="Not Verified" onclick="SetValid(' + object.cityId + ');">Deactivate</a></li>';
+                            _htmlTable += '<li class="divider"></li>';
+                            _htmlTable += '<li><a title="Edit" onclick="ReadData(' + object.cityId + ');">Edit</a>';
+                            _htmlTable += '</li></ul></div></td></tr>';
+                        });
+                    }
+                    $('#listCity').html(_htmlTable);
+                    $('#myTable2').DataTable();
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function inputClear() {
+            $('#txtCityName').val('');
+            $('#hd_City_id').val('0');
+        }
+        //Add News City
+        function AddCity() {
+            var cityName = $('#txtCityName').val();
+            var cityId = $('#hd_City_id').val();
+            $(".error").remove();
+            if (cityName.length == "") {
+                $('#txtCityName').after('<span class="error">This field is required</span>');
+                $('#txtCityName').addClass('txterror');
+            }
+            else {
+                $('.loader').show();
+                var data = "{cityName:'" + cityName + "',cityId:'" + cityId + "'}";
+
+                var url = "https://api.kwickwash.com/api/city";
+
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        if (data == "1") {
+                            document.getElementById("FrCity").reset();
+                            $('#alertt').fadeIn(2000);
+                            $('#alertt').fadeOut(3000);
+                            $('.loader').hide();
+                            $.alert({
+                                title: 'Success!',
+                                content: 'save successfully',
+                            });
+                            BindCity();
+                            $('#cityBox').each(function () {
+                                $(this).modal('hide');
+                            });
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        }
+
+        function ReadData(id) {
+            $('.loader').show();
+            $('#cityBox').each(function () {
+                $(this).modal('show');
+            });
+            var url = "https://api.kwickwash.com/api/city/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            $('#hd_City_id').val(object.cityId);
+                            $('#txtCityName').val(object.cityName);
+                            $('.loader').hide();
+                        });
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+    <div id="cityBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-user" style="color:white;"></i> City </h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader" style="display:none;">
+                    <span><i class="fa fa-spinner fa-spin" style="color:white; font-size:117px; text-align:center;"></i></span>
+                </div>
+
+                <div id="alertdivision" class="alert alert-success" style="display:none;">
+                    <strong>Success!</strong>save successfully !!.
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12 float-lg-right">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+                                            <div class="white-box">
+                                                <div id="loader">
+
+                                                </div>
+                                                <form data-toggle="validator" enctype="multipart/form-data" id="FrCity">
+                                                    <div class="row" style="margin-top: 16px;">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="contactName">City Name</label>
+                                                                <input type="hidden" name="hd_City_id" id="hd_City_id" value="0">
+                                                                <input type="hidden" name="hd_UserId" id="hd_UserId" value="0">
+                                                                <input type="text" class="form-control" name="name" id="txtCityName" placeholder="Enter City Name" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="form-group">
+                                                        <div id="alertt" class="alert alert-success" style="display:none;">
+                                                            <strong>Success!</strong> save record.
+                                                        </div>
+                                                        <a href="#" class="btn btn-primary" onclick="AddCity();">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

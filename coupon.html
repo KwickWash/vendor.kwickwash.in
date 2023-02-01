@@ -1,0 +1,601 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="5x5" href="assets/img/favicon.png">
+    <title>KwickWash</title>
+    <template id="ctrheadercss">
+    </template>
+    <style type="text/css">
+        .classCoupon {
+            background-color: darkmagenta;
+        }
+
+        .loader {
+            background: orangered;
+            text-align: center;
+            width: 1093px;
+            padding: 25%;
+            border: 1px solid orangered;
+            opacity: 0.5;
+            position: absolute;
+            z-index: 999;
+            margin-left: 2px;
+            border-radius: 4px;
+            margin-top: -40px;
+        }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- Start Topbar header-->
+        <div id="ctrheader"></div>
+        <!-- End Topbar header-->
+        <!-- Start Left Sidebar -->
+        <div class="navbar-default sidebar" role="navigation" id="ctrLeftMenu">
+        </div>
+        <!-- End Left Sidebar -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Coupon</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <a href="#CouponBox" onclick="inputClear();" class="btn btn-primary" data-toggle="modal" type="button" aria-haspopup="true" aria-expanded="false" style="float: right;">
+                            <i class="fa fa-user"> </i> Add Coupon
+                        </a>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="col-md-12">
+                    <!-- .row -->
+                    <div class="row">
+
+                        <!-- </div> -->
+                        <!-- /.row -->
+                        <!-- ============================================================== -->
+                        <!-- /row -->
+                        <!-- <div class="row"> -->
+                        <div class="col-sm-12">
+                            <div class="white-box">
+                                <h3 class="box-title m-b-0">All Coupon list</h3>
+                                <div class="table-responsive" style="overflow: auto;">
+                                    <table id="myCouponList" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Coupon-Code</th>
+                                                <th>Date</th>
+                                                <th>Service-Name</th>
+                                                <th>Product-Name</th>
+                                                <th>Customer-Type</th>
+                                                <th>Coupon-Valid</th>
+                                                <th>Coupon-Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listCoupon">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+            <style type="text/css">
+                a.disabled {
+                    pointer-events: none;
+                    cursor: default;
+                }
+            </style> <!-- /.container-fluid -->
+            <div id="ctrFooter"></div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <script src="assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="assets/js/waves.js"></script>
+    <!--Counter js -->
+    <!--Morris JavaScript -->
+    <script src="assets/plugins/bower_components/raphael/raphael-min.js"></script>
+    <script src="assets/plugins/bower_components/morrisjs/morris.js"></script>
+    <!-- chartist chart -->
+    <script src="assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Calendar JavaScript -->
+    <script src="assets/plugins/bower_components/moment/moment.js"></script>
+    <script src='assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
+    <script src="assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
+    <script src="assets/plugins/bower_components/Minimal-Gauge-chart/js/cmGauge.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+    <!-- Magnific popup JavaScript -->
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>
+    <script src="assets/plugins/bower_components/Magnific-Popup-master/dist/jquery.magnific-popup-init.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/validator.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+    <!--<script src="assets/js/dashboard1.js"></script>-->
+    <script src="assets/js/dashboard2.js"></script>
+    <script src="assets/js/jquery.PrintArea.js" type="text/JavaScript"></script>
+    <!--Counter js -->
+    <script>
+      
+
+        function bgLoad() {
+            BindService();
+            BindCoupon();
+        }
+
+        function BindService() {
+            //alert(id);
+            $('#txtserviceName').html('<h3><i class="fa fa-spiner fa-spin"></i></h3>');
+            var option = "<option value='0'>ALL SERVICE</option>";
+            var id = $('#hd_Userid').val();
+            var url = "https://api.kwickwash.com/api/myservice/" + id;
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            option += "<option value='" + object.sid + "'>" + object.serviceName + "</option>";
+                        });
+                    }
+                    $('#txtserviceName').html(option);
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function getmyProduct() {
+            var sid = $('#txtserviceName').val();
+            $('#ddproduct').html('<h3><i class="fa fa-spiner fa-spin"></i></h3>');
+            var option = "<option value='0'>ALL PRODUCT</option>";
+            var url = "https://api.kwickwash.com/api/productlist/GetProduct?sid=" + sid + "&uid=0";
+            //alert(url);
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            option += "<option value='" + object.proId + "'>" + object.productName + "</option>";
+                        });
+                    }
+                    $('#ddproduct').html(option);
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+                        
+        function BindCoupon() {
+            $('#listCoupon').html('<td colspan="6" style="text-align: center;"><span><i class="fa fa-spinner fa-spin" style="color:darkslateblue; font-size:40px; text-align:center;"></i></span></td>');
+            var id=$('#hd_Userid').val()
+            var url = "https://api.kwickwash.com/api/coupon/" + id;
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'GET',
+                success: function (data) {
+                    _details = data;
+                    var _htmlTable = "";
+                    if (typeof (_details) !== 'undefined') {
+                        $.each(_details, function (i, object) {
+                            _htmlTable += '<tr>';
+                            _htmlTable += '<td>' + object.couponCode + '</td>';
+                            _htmlTable += '<td>Start-Date : ' + object.startDate + '<br/> End-Date : ' + object.endDate + '</td>';                          
+                            _htmlTable += '<td>' + object.serviceName + '</td>';
+                            _htmlTable += '<td>' + object.productName + '</td>';
+                            _htmlTable += '<td>' + object.customerType + '</td>';
+                            _htmlTable += '<td>' + object.validNoOfTime + ' Times</td>';
+                            _htmlTable += '<td>' + object.couponValue + '</td>';
+                            _htmlTable += '</tr>';
+                        });
+                    }
+                    $('#listCoupon').html(_htmlTable);
+                    $('#myCouponList').DataTable();
+                  
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+
+        function AddCoupon() {
+            var couponCode = $('#txtcoupon').val();
+            var startDate = $('#txtstartdate').val();
+            var endDate = $("#txtenddate").val();
+            var srId = $('#txtserviceName').val();
+            var serviceName = $("#txtserviceName option:selected").text();
+            var proId = $('#ddproduct').val();
+            var productName = $("#ddproduct option:selected").text();
+            var customerType = $('#ddcustomertype').val();
+            var validNoOfTime = $('#ddvalidNoOfTime').val();
+            var couponValue = $('#txtCouponValue').val();
+            var loginUserid = $('#hd_Userid').val();
+
+            $(".error").remove();
+            if (couponCode.length == "") {
+                $('#txtcoupon').after('<span class="error">This field is required</span>');
+                $('#txtcoupon').addClass('txterror');
+            }
+            else if (couponValue.length == "") {
+                $('#txtcoupon').remove('txterror');
+                $('#txtcoupon').addClass('txtsussess');
+                $('#txtCouponValue').after('<span class="error">This field is required</span>');
+                $('#txtCouponValue').addClass('txterror');
+            }
+            else if (startDate.length == "")
+            {
+                alert("Please select start date");
+            }
+            else if (endDate.length == "")
+            {
+                alert("Please select end date");
+            }
+            if (srId == "0")
+            {
+                srId = "0";
+                serviceName = "All";
+            }
+            if (proId == "0")
+            {
+                proId = "0";
+                productName = "All";
+            }
+            else {
+                $('#loader').show();
+                $('#btnSave').hide();
+                var data = "{couponCode:'" + couponCode + "',startDate:'" + startDate + "',endDate:'" + endDate
+                    + "',srId:'" + srId + "',serviceName:'" + serviceName + "',proId:'" + proId + "',productName:'" + productName
+                    + "',customerType:'" + customerType + "',validNoOfTime:'" + validNoOfTime + "',couponValue:'" + couponValue
+                    + "',loginUserid:'" + loginUserid+ "'}";
+
+                var url = "https://api.kwickwash.com/api/coupon";
+
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    type: 'POST',
+                    data: data,
+                    success: function (data) {
+                        if (data == "true") {
+                            document.getElementById("FrCoupon").reset();
+                            $('#alertt').fadeIn(2000);
+                            $('#alertt').fadeOut(3000);                          
+                            $('#loader').hide();
+                            $('#btnSave').show();
+                            $.alert({
+                                title: 'Success!',
+                                content: 'Save successfully',
+                            });
+                            $('#CouponBox').each(function () {
+                                $(this).modal('hide');
+                            });
+                              BindCoupon();
+                        }
+                    },
+                    error: function (errorThrown) {
+                        console.log(errorThrown);
+                        $('#loader').hide();
+                        $('#btnSave').show();
+                    }
+                });
+            }
+        }
+
+    </script>
+    <!-- Custom tab JavaScript -->
+    <script src="assets/js/cbpFWTabs.js"></script>
+    <script type="text/javascript">
+        (function () {
+            [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
+                new CBPFWTabs(el);
+            });
+        })();
+    </script>
+    <script src="assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="assets/plugins/bower_components/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript" src="assets/js/ajaxupload.js"></script>
+    <script>
+        $(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+        $(function () {
+            $('#myTable1').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+                $('#example tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                        table.order([2, 'desc']).draw();
+                    } else {
+                        table.order([2, 'asc']).draw();
+                    }
+                });
+            });
+        });
+
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+        $('.example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary m-r-10');
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
+    <div id="CouponBox" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header w3-theme">
+                    <h3 class="w3-text-white" style="color:white;" id="reqdt"><i class="fa fa-user" style="color:white;"></i> Coupon </h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="loader" style="display:none;">
+                    <span><i class="fa fa-spinner fa-spin" style="color:white; font-size:117px; text-align:center;"></i></span>
+                </div>
+
+                <div id="alertCoupon" class="alert alert-success" style="display:none;">
+                    <strong>Success!</strong>save successfully !!.
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12 float-lg-right">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="col-sm-12">
+                                            <div class="white-box">
+                                                <div id="loader">
+
+                                                </div>
+                                                <form data-toggle="validator" enctype="multipart/form-data" id="FrCoupon">
+
+                                                    <div class="row" style="margin-top: 16px;">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label" id="contactName">Coupon Code</label>
+                                                                <input type="hidden" name="hd_coupon_id" id="hd_coupon_id" value="0">
+                                                                <input type="text" class="form-control" name="txtcoupon" id="txtcoupon" placeholder="Enter Coupon Code" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Start Date</label>
+                                                                <input type="date" class="form-control" name="txtstartdate" id="txtstartdate" placeholder="Enter Start Date" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">End Date</label>
+                                                                <input type="date" class="form-control" name="txtenddate" id="txtenddate" placeholder="Enter Start Date" required>
+                                                            </div>
+                                                        </div>                                                       
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Sevice</label>
+                                                                <select id="txtserviceName" class="form-control" onchange="getmyProduct();"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Product</label>
+                                                                <select id="ddproduct" class="form-control"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Customer Type</label>
+                                                                <select id="ddcustomertype" class="form-control">
+                                                                    <option value="All">All</option>
+                                                                    <option value="New">New</option>
+                                                                    <option value="Old">Old</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Coupon valid for no.of uses</label>
+                                                                <select id="ddvalidNoOfTime" class="form-control">
+                                                                    <option value="0">--Coupon Valid--</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Coupon Value(%)</label>
+                                                                <input type="text" class="form-control" name="txtCouponValue" id="txtCouponValue" placeholder="Enter Start Date" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div id="alertt" class="alert alert-success" style="display:none;">
+                                                            <strong>Success!</strong> save record.
+                                                        </div>
+                                                        <a href="#" class="btn btn-primary" onclick="AddCoupon();">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
