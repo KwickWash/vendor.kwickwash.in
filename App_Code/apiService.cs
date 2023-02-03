@@ -638,6 +638,7 @@ public class apiService : System.Web.Services.WebService
         public string orderType { get; set; }
         public string dropRequest { get; set; }
         public string name { get; set; }
+        public string companyName { get; set; }
         public string mobile { get; set; }
         public string orderDate { get; set; }
         public string status { get; set; }
@@ -685,6 +686,7 @@ public class apiService : System.Web.Services.WebService
                 data.orderType = dr["OrderType"].ToString();
                 data.dropRequest = dr["dropRequest"].ToString();
                 data.name = dr["name"].ToString();
+                data.companyName = dr["companyName"].ToString();
                 data.mobile = dr["mobile"].ToString();
                 DateTime oDate = Convert.ToDateTime(dr["orderDate"]);
                 data.orderDate = oDate.ToString("dd-MMM-yyyy hh:mm").ToString();

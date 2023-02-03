@@ -102,6 +102,7 @@
                                             <tr>
                                                 <th style="display:none;">#</th>
                                                 <th>Order#</th>
+                                                <th>Company Name</th>
                                                 <th>Order Type</th>
                                                 <th>Drop Request</th>
                                                 <th>Customer Name</th>
@@ -316,6 +317,7 @@
                             _htmlTable += '<tr class="' + trCss + '">';
                             _htmlTable += '<td style="display:none;">' + ctr + '</td>';
                             _htmlTable += '<td><a class="orderNo" data-toggle="modal" type="button" aria-haspopup="true" aria-expanded="false" target="_blank" href="#orderBox" onclick="BindOrderItem(' + object.orderId + ')"> ' + object.orderId + '</a></td>';
+                            _htmlTable += '<td>' + object.companyName + '</td>';
                             _htmlTable += '<td>' + object.orderType + '</td>';
                             _htmlTable += '<td>' + object.dropRequest + '</td>';
                             _htmlTable += '<td>' + object.name + '</td>';
